@@ -1,0 +1,11 @@
+{
+  "presets": ["es2015", "stage-2", "react"],
+  "plugins": ["react-hot-loader/babel", "transform-class-properties"],
+  "env": {
+    "production": {
+      "presets": [
+        "react-optimize"
+      ]
+    }
+  }
+}

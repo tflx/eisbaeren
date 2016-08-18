@@ -1,0 +1,20 @@
+@custom-media --media-mobile (max-width: 767px);
+@custom-media --media-tablet (min-width: 768px);
+@custom-media --media-desktop (min-width: 922px);
+@custom-media --media-desktop-menu (min-width: 1000px);
+@custom-media --media-hd (min-width: 1440px);
+@lost gutter 40px;
+
+:root {
+  --gutter: 40px;
+  --link-color: #f38b00;
+  --frame-color: #d7d7d7;
+  --social-link-color: #5F6062;
+  --dark: #000000;
+  --desktop-menu-min: 1000px;
+  --menu-height-desktop: 140px;
+  --menu-height-mobile: 80px;
+
+  --layer-menu: 10;
+  --layer-modal: 100;
+}

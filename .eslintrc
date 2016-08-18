@@ -1,0 +1,22 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "jasmine": true
+  },
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "eol-last": 0,
+    "no-console": 0,
+    "no-use-before-define": ["error", { "functions": false, "classes": true }],
+    "object-curly-spacing": 0,
+    "spaced-comment": ["error", "always"],
+    "max-len": ["warn", { "code": 200 }],
+    "react/jsx-indent-props": 0,
+    "react/jsx-no-undef": 2,
+    "react/prefer-stateless-function": 0
+  }
+}

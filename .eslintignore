@@ -1,0 +1,11 @@
+# node_modules ignored by default
+src/static/js
+src/libs/**
+
+# Ignore files compiled from TypeScript and CoffeeScript
+**/*.{ts,coffee}.js
+
+# Ignore dist
+dist/**
+tools/**
+test/**

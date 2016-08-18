@@ -1,0 +1,16 @@
+.sprite {
+  transform: translate3d(0, 0, 0); /* fix webkit/blink poor rendering issues */
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.svg {
+  /* position: absolute;
+  left: 0;
+  top: 0; */
+  width: inherit;
+  height: inherit;
+  line-height: inherit;
+  color: inherit;
+  fill: currentColor;
+}

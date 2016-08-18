@@ -1,0 +1,26 @@
+//- Global HTML layout for the static pages
+block vars
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="chrome=1")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    title MasterPass
+
+    if (!isProduction)
+      //- In dev mode, load the .js in <head>. This is to avoid the FOUC when page reloads.
+      script(src='/app.js')
+    else
+      link(rel="stylesheet", type="text/css", href=('/css/app.min.css'))
+
+
+
+    block head
+  body(class=bodyClass)
+    block content
+
+    if (isProduction)
+      script(src=('/js/vendor.min.js'))
+      script(src=('/js/app.min.js'))

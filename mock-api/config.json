@@ -1,0 +1,9 @@
+{
+  "holdsport": {
+    "api": "https://api.holdsport.dk/v1/teams/",
+    "teamId": "2683"
+  },
+  "dai": {
+    "id": ""
+  }
+}

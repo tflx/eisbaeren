@@ -1,0 +1,28 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-hex-case": null,
+    "color-hex-length": "long",
+    "color-no-invalid-hex": true,
+    "declaration-block-no-duplicate-properties": [true, { ignore: ["consecutive-duplicates"] }],
+    "declaration-no-important": true,
+    "font-weight-notation": [ "numeric", {
+      "message": "Use numbers for font-weight. Bold is 700, normal is 400, etc. (font-weight-notation)"
+    }],
+    "indentation": [2, {
+      "except": ["value"]
+    }],
+    "no-duplicate-selectors": true,
+    "no-descending-specificity": true,
+    "no-missing-eof-newline": null,
+    "max-empty-lines": 2,
+    "max-nesting-depth": [2, { ignore: ["at-rules-without-declaration-blocks"] }],
+    "selector-no-universal": true,
+    "selector-no-vendor-prefix": true,
+    "selector-pseudo-element-no-unknown": true,
+    "selector-type-case": "lower",
+    "time-no-imperceptible": true,
+    "unit-case": "lower",
+    "value-no-vendor-prefix": true
+  }
+}
