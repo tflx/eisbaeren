@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom';
 import AppRouter from './router';
 import './exports';
 import './global/global.css';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 /**
  * In dev, wait for the page to be ready before rendering. Otherwise you'll see when FOUC when reloading.

@@ -6,15 +6,7 @@
 @lost gutter 40px;
 
 :root {
-  --gutter: 40px;
-  --link-color: #f38b00;
-  --frame-color: #d7d7d7;
-  --social-link-color: #5F6062;
-  --dark: #000000;
-  --desktop-menu-min: 1000px;
-  --menu-height-desktop: 140px;
-  --menu-height-mobile: 80px;
-
-  --layer-menu: 10;
-  --layer-modal: 100;
+  --gutter: 20px;
+  --primary-color: #f80015;
+  --secondary-color: #3b18f1;
 }

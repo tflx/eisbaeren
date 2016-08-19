@@ -1,0 +1,10 @@
+@import 'global/variables.css';
+
+.list {
+  list-style: none;
+}
+
+
+.single-activity {
+  margin-bottom: var(--gutter);
+}

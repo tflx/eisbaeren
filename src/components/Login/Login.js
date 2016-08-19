@@ -1,6 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {saveUser} from '../../utils/user';
 import {validateHoldsportLogin} from '../../utils/holdsport';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import H1 from 'components/H1';
 
 export default class Login extends Component {
   static propTypes = {
@@ -16,9 +19,11 @@ export default class Login extends Component {
 
     const {username, password} = this.refs;
 
-    validateHoldsportLogin(username.value, password.value)
-    .then(() => {
-      saveUser(username.value, password.value);
+
+    validateHoldsportLogin(username.input.value, password.input.value)
+    .then((response) => {
+      console.log(response);
+      saveUser(username.input.value, password.input.value);
       this.props.onLogin();
     })
     .catch((error) => {
@@ -28,13 +33,14 @@ export default class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} noValidate>
-        <label htmlFor="username">Brugernavn</label>
-        <input ref="username" id="username" name="username" type="text" />
-        <label htmlFor="password">Adgangskode</label>
-        <input ref="password" id="password" name="password" type="password" />
-        <button type="submit">Log Ind</button>
-      </form>
+      <div>
+        <H1>Holdsport login</H1>
+        <form noValidate>
+          <TextField ref="username" floatingLabelText="Brugernavn" id="username" name="username" type="text" />
+          <TextField ref="password" floatingLabelText="Adgangskode" id="password" name="password" type="password" />
+          <RaisedButton label="Log ind" onClick={this.handleSubmit} />
+        </form>
+      </div>
     );
   }
 }
