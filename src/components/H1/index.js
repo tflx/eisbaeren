@@ -1,9 +1,10 @@
 import React, {PropTypes} from 'react';
 import styles from './H1.css';
+import classNames from 'classnames';
 
-function H1({children}) {
+function H1({children, ...props}) {
   return (
-    <h1 className={styles.h1}>{children}</h1>
+    <h1 className={classNames(styles.h1, props.className)}>{children}</h1>
   );
 }
 

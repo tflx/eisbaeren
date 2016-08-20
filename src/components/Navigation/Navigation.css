@@ -2,36 +2,36 @@
 @import 'global/variables.css';
 
 :root {
-  --bottom:  30px;
-  --left:  30px;
-  --size:  60px;
+  --bottom: 30px;
+  --left: 30px;
+  --size: 60px;
 }
 
 .nav-container {
-	position: fixed;
-	z-index: 1;
+  position: fixed;
+  z-index: 1;
 }
 
 .floating {
-	background-color: var(--primary-color);
-	width: var(--size);
-	height: var(--size);
-	border-radius: 50%;
-	box-shadow: 0 2px 6px 0 rgba(0,0,0,.16);
-	position: fixed;
-	bottom: var(--bottom);
-	left: var(--left);
-	z-index: 10;
-	transition: box-shadow .4s cubic-bezier(.7,0,.3,1);
+  background-color: var(--primary-color);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+  position: fixed;
+  bottom: var(--bottom);
+  left: var(--left);
+  z-index: 10;
+  transition: box-shadow 0.4s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 .floating-open {
-	composes: floating;
-	box-shadow: none;
+  composes: floating;
+  box-shadow: none;
 }
 
 .nav-icon {
-	background-color: var(--white);
+  background-color: var(--white);
   width: 28px;
   height: 2px;
   display: block;
@@ -41,53 +41,54 @@
   transform: translate(-50%, -50%);
   transition: background-color 0.3s;
 
-  &:before, &:after {
-  	content: " ";
-  	background-color: var(--white);
+  &::before,
+  &::after {
+    content: " ";
+    background-color: var(--white);
     width: 28px;
     height: 2px;
     display: block;
     position: relative;
     transform-origin: 50% 50%;
-    transition: transform .3s cubic-bezier(.7,0,.3,1);
+    transition: transform 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   }
 
-  &:before{
-  	transform: translateY(-400%);
+  &::before {
+    transform: translateY(-400%);
   }
 
-  &:after{
-  	transform: translateY(300%);
+  &::after {
+    transform: translateY(300%);
   }
 }
 
 .nav-icon-open {
-	composes: nav-icon;
-	background-color: transparent;
+  composes: nav-icon;
+  background-color: transparent;
 
-	&:before{
-		transform: translateY(50%) rotate(45deg);
-	}
+  &::before {
+    transform: translateY(50%) rotate(45deg);
+  }
 
-	&:after{
-		transform: translateY(-50%) rotate(-45deg);
-	}
+  &::after {
+    transform: translateY(-50%) rotate(-45deg);
+  }
 }
 
 .nav-layer {
-	position: fixed;
-	background-color: var(--primary-color);
-	width: var(--size);
-	height: var(--size);
-	border-radius: 50%;
-	bottom: var(--bottom);
-	left: var(--left);
-	transition: transform .3s cubic-bezier(.7,0,.3,1);
+  position: fixed;
+  background-color: var(--primary-color);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  bottom: var(--bottom);
+  left: var(--left);
+  transition: transform 0.3s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 .nav-wrapper {
-	position: fixed;
-	overflow: scroll;
+  position: fixed;
+  overflow: scroll;
   top: 0;
   left: 0;
   padding: 40px 20px 20px;
@@ -97,15 +98,23 @@
 }
 
 .brand {
-	color: var(--white);
+  color: var(--white);
 }
 
 .logo {
-	fill: currentcolor;
+  fill: currentcolor;
 }
 
-.nav-item {
-	display: block;
-	color: var(--white);
-	text-decoration: none;
+.nav-link {
+  display: block;
+  color: var(--white);
+  text-decoration: none;
 }
+
+
+.nav-text {
+  @media (orientation: landscape) {
+    font-size: 7vw !important;
+  }
+}
+

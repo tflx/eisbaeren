@@ -16,7 +16,9 @@ export default class NavItem extends Component {
 
   render() {
     return (
-      <Link {...this.props} to={this.props.href} className={styles.navItem} ><H1>{this.props.label}</H1></Link>
+      <Link {...this.props} to={this.props.href} className={styles.navLink}>
+        <H1 className={styles.navText}>{this.props.label}</H1>
+      </Link>
     );
   }
 }
