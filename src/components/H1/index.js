@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import styles from './H1.css';
-import classnames from 'classnames';
 
 function H1({children}) {
   return (

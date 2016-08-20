@@ -30,7 +30,8 @@ export default class Navigation extends Component {
   }
 
   render() {
-    const factor = Math.floor(window.innerHeight / 26);
+    console.log(window.orientation)
+    const factor = Math.ceil(Math.max(window.innerHeight, window.innerWidth) / 25);
     const open = {
       transform: this.state.open ? `scale(${factor})` : 'scale(1)'
     };
