@@ -5,6 +5,7 @@ import styles from './Navigation.css';
 import logo from 'static/logo.svg';
 import config from '../../../mock-api/config.json';
 import NavItem from './NavItem';
+import Float from './Float';
 
 export default class Navigation extends Component {
 
@@ -36,7 +37,8 @@ export default class Navigation extends Component {
 
     return (
       <div>
-        <FloatingActionButton backgroundColor={config.colors.primary} className={styles.floating} onClick={this.toggleOpen} />
+        <Float onClick={this.toggleOpen} open={this.state.open} />
+        <div className={styles.navLayer} style={open} />
         {this.state.open ?
           <div className={styles.navWrapper}>
             <div className={styles.brand}>
@@ -46,7 +48,6 @@ export default class Navigation extends Component {
           </div>
           : null
         }
-        <div className={styles.navLayer} style={open} />
       </div>
     );
   }

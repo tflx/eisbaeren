@@ -5,6 +5,7 @@ import Index from './views/Index';
 import Players from './views/Players';
 import Profile from './views/Profile';
 import Score from './views/Score';
+import Info from './views/Info';
 
 
 export default (
@@ -14,6 +15,7 @@ export default (
       <Route path="spillere" component={Players} />
       <Route path="profil" component={Profile} />
       <Route path="stilling" component={Score} />
+      <Route path="info" component={Info} />
     </Route>
   </Router>
 );
