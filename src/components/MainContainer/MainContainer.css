@@ -3,4 +3,5 @@
 .main-container {
   max-width: 1400px;
   padding: var(--gutter);
+  margin-bottom: 100px;
 }

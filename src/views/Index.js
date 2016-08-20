@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {getUser} from '../utils/user';
-import Activities from 'components/Activities/Activities';
+import ActivityList from 'components/ActivityList/ActivityList';
 import Login from 'components/Login/Login';
 
 export default class Index extends Component {
@@ -16,7 +16,7 @@ export default class Index extends Component {
   render() {
     return (
       <div>
-        {this.state.isLoggedIn ? <Activities /> : <Login onLogin={this.onLoginSuccess} />}
+        {this.state.isLoggedIn ? <ActivityList /> : <Login onLogin={this.onLoginSuccess} />}
       </div>
     );
   }

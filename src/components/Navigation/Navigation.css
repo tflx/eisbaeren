@@ -1,0 +1,51 @@
+@import 'global/global.css';
+@import 'global/variables.css';
+
+:root {
+  --bottom:  30px;
+  --left:  30px;
+}
+
+.floating {
+	position: fixed;
+	bottom: var(--bottom);
+	left: var(--left);
+	z-index: 10;
+}
+
+.nav-layer {
+	position: fixed;
+	background-color: var(--primary-color);
+	width: 55px;
+	height: 55px;
+	border-radius: 55px;
+	bottom: var(--bottom);
+	left: var(--left);
+	z-index: 11;
+	pointer-events: none;
+	transition: transform .3s cubic-bezier(.7,0,.3,1);
+}
+
+.nav-wrapper {
+	position: absolute;
+  top: 0;
+  left: 0;
+  padding: 40px 20px 20px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 12;
+  text-align: center;
+}
+
+.brand {
+	color: var(--white);
+}
+
+.logo {
+	fill: currentcolor;
+}
+
+.nav-item {
+	color: var(--white);
+	text-decoration: none;
+}

@@ -1,11 +1,11 @@
 const days = {
-  0: 'søndag',
-  1: 'mandag',
-  2: 'tirsdag',
-  3: 'onsdag',
-  4: 'torsdag',
-  5: 'fredag',
-  6: 'lørdag',
+  0: 'Søndag',
+  1: 'Mandag',
+  2: 'Tirsdag',
+  3: 'Onsdag',
+  4: 'Torsdag',
+  5: 'Fredag',
+  6: 'Lørdag',
 };
 
 export function getDay(day) {

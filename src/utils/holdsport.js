@@ -18,7 +18,7 @@ function getOptions() {
 export function validateHoldsportLogin(username, password) {
   const options = getOptions();
   options.headers = { Authorization: encodeLogin(username, password) };
-  const subPath = '';
+  const subPath = 'user';
 
   return fetch(options.hostname + subPath, options)
   .then((response) => handleResponse(response)
@@ -27,13 +27,14 @@ export function validateHoldsportLogin(username, password) {
   );
 }
 
-export function getHoldsportData(path) {
+export function get(path) {
   const options = getOptions();
-  const subPath = path ? `${config.holdsport.teamId}/${path}` : '';
+  const subPath = path ? `teams/${config.holdsport.teamId}/${path}` : 'user';
 
   return fetch(options.hostname + subPath, options)
   .then(response => handleResponse(response));
 }
+
 
 function handleResponse(response) {
   if (response.status >= 200 && response.status < 300) {

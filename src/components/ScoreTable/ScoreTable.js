@@ -7,6 +7,10 @@ export default class Score extends Component {
   };
 
   componentDidMount() {
+    // getScore();
+  }
+
+  getScore() {
     console.log('Score');
 
     const options = {
@@ -20,6 +24,6 @@ export default class Score extends Component {
   }
 
   render() {
-    return (< div / >);
+    return (<div>Score</div>);
   }
 }

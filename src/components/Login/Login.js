@@ -38,7 +38,7 @@ export default class Login extends Component {
         <form noValidate>
           <TextField ref="username" floatingLabelText="Brugernavn" id="username" name="username" type="text" />
           <TextField ref="password" floatingLabelText="Adgangskode" id="password" name="password" type="password" />
-          <RaisedButton label="Log ind" onClick={this.handleSubmit} />
+          <RaisedButton label="Log ind" fullWidth onClick={this.handleSubmit} />
         </form>
       </div>
     );

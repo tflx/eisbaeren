@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
 
 function Loader({...props}) {
-  console.log(props);
   const style = {};
 
   if (props.centered) {

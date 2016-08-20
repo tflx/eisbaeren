@@ -1,9 +1,37 @@
 {
+  "name": "Eisbären",
+  "logo": "static/bear1.svg",
   "holdsport": {
-    "api": "https://api.holdsport.dk/v1/teams/",
+    "api": "https://api.holdsport.dk/v1/",
     "teamId": "2683"
   },
   "dai": {
     "id": ""
-  }
+  },
+  "colors": {
+    "primary": "#f80015",
+    "secondary": "#3b18f1"
+  },
+  "nav": [
+  	{
+  		"label": "Aktiviteter",
+  		"href": "/"
+  	},
+  	{
+  		"label": "Spillere",
+  		"href": "/spillere"
+  	},
+  	{
+  		"label": "Stilling",
+  		"href": "/stilling"
+  	},
+  	{
+  		"label": "Info",
+  		"href": "/info"
+  	},
+    {
+      "label": "Din profil",
+      "href": "/profil"
+    }
+  ]
 }

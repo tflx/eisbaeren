@@ -1,25 +1,27 @@
 import React, {PropTypes} from 'react';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
 import MainContainer from '../components/MainContainer/MainContainer';
+import Navigation from '../components/Navigation/Navigation';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import config from '../../mock-api/config.json';
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: '#3b18f1'
+    primary1Color: config.colors.secondary,
+    primary2Color: config.colors.primary,
   }
 });
 
 const MainLayout = ({children}) => (
   <div>
-    <Header />
     <MainContainer>
       <MuiThemeProvider muiTheme={muiTheme}>
         {children}
       </MuiThemeProvider>
     </MainContainer>
-    <Footer />
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <Navigation />
+    </MuiThemeProvider>
   </div>
 );
 

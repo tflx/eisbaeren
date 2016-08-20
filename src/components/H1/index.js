@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import styles from './H1.css';
+import classnames from 'classnames';
 
 function H1({children}) {
   return (
@@ -8,7 +9,8 @@ function H1({children}) {
 }
 
 H1.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  className: PropTypes.string
 };
 
 export default H1;

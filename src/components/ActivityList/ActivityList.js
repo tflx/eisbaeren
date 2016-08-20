@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {getHoldsportData} from '../../utils/holdsport';
+import {get} from '../../utils/holdsport';
 import SingleActivity from './SingleActivity';
 import H1 from 'components/H1';
 import styles from './Activities.css';
-import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader';
 
-export default class Activities extends Component {
+export default class ActivityList extends Component {
 
   state = {
     activities: null,
@@ -19,7 +19,7 @@ export default class Activities extends Component {
 
   getActivities() {
     this.setState({fetching: true});
-    getHoldsportData('activities')
+    get('activities')
     .then(response => {
       this.setState({activities: response});
       this.setState({fetching: false});
