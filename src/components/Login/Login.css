@@ -1,0 +1,15 @@
+@import 'global/variables.css';
+
+.input {
+  width: 100% !important;
+}
+
+.button {
+  margin: var(--gutter) 0;
+}
+
+.error {
+  font-size: 14px;
+  color: var(--color-error);
+  margin: 0;
+}

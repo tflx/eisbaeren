@@ -4,6 +4,7 @@ import {validateHoldsportLogin} from '../../utils/holdsport';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import H1 from 'components/H1';
+import styles from './Login.css';
 
 export default class Login extends Component {
   static propTypes = {
@@ -11,8 +12,15 @@ export default class Login extends Component {
   }
 
   state = {
-    submitted: false
+    error: false
   };
+
+  onKeyDown = (event) => {
+    this.setState({error: false});
+    if (event.keyCode === 13) {
+      this.handleSubmit();
+    }
+  }
 
   handleSubmit = (event) => {
     if (event) event.preventDefault();
@@ -28,6 +36,7 @@ export default class Login extends Component {
     })
     .catch((error) => {
       console.log('ERROR!!', error);
+      this.setState({error: true});
     });
   }
 
@@ -35,10 +44,11 @@ export default class Login extends Component {
     return (
       <div>
         <H1>Holdsport login</H1>
-        <form noValidate>
-          <TextField ref="username" floatingLabelText="Brugernavn" id="username" name="username" type="text" />
-          <TextField ref="password" floatingLabelText="Adgangskode" id="password" name="password" type="password" />
-          <RaisedButton label="Log ind" fullWidth onClick={this.handleSubmit} />
+        {this.state.error ? <p className={styles.error}>Forkert login!</p> : <p className={styles.error}>&nbsp;</p>}
+        <form noValidate onKeyDown={this.onKeyDown}>
+          <TextField className={styles.input} ref="username" floatingLabelText="Brugernavn" id="username" name="username" type="text" />
+          <TextField className={styles.input} ref="password" floatingLabelText="Adgangskode" id="password" name="password" type="password" />
+          <RaisedButton className={styles.button} label="Log ind" fullWidth onClick={this.handleSubmit} />
         </form>
       </div>
     );
