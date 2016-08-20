@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import MainContainer from '../components/MainContainer/MainContainer';
+import NavigationContainer from '../components/Navigation/NavigationContainer';
 import Navigation from '../components/Navigation/Navigation';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -19,9 +20,11 @@ const MainLayout = ({children}) => (
         {children}
       </MuiThemeProvider>
     </MainContainer>
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <Navigation />
-    </MuiThemeProvider>
+    <NavigationContainer>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Navigation />
+      </MuiThemeProvider>
+    </NavigationContainer>
   </div>
 );
 
