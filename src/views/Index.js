@@ -6,8 +6,14 @@ import Login from 'components/Login/Login';
 export default class Index extends Component {
 
   state = {
-    isLoggedIn: getUser()
+    isLoggedIn: false
   };
+
+  componentWillMount() {
+    let isLoggedIn = false;
+    if (getUser() !== undefined) isLoggedIn = true;
+    this.setState({isLoggedIn});
+  }
 
   onLoginSuccess = () => {
     this.setState({isLoggedIn: true});

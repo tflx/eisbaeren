@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import styles from './Navigation.css';
 import logo from 'static/logo.svg';
 import config from '../../../mock-api/config.json';
 import NavItem from './NavItem';
 import Float from './Float';
+import {getUser} from '../../utils/user';
 
 export default class Navigation extends Component {
 
   state = {
-    open: false
+    open: false,
+    loggedIn: false
+  }
+
+  componentWillMount() {
+    if (getUser() !== undefined) this.setState({loggedIn: true});
   }
 
   toggleOpen = () => {
@@ -42,7 +47,7 @@ export default class Navigation extends Component {
         {this.state.open ?
           <div className={styles.navWrapper}>
             <div className={styles.brand}>
-              <SvgIcon className={styles.logo} svg={logo} width="50" />
+              <SvgIcon className={styles.logo} svg={logo} width="50px" />
             </div>
             <div>{this.renderList()}</div>
           </div>

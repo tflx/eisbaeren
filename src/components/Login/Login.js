@@ -45,9 +45,9 @@ export default class Login extends Component {
       <div>
         <H1>Holdsport login</H1>
         {this.state.error ? <p className={styles.error}>Forkert login!</p> : <p className={styles.error}>&nbsp;</p>}
-        <form noValidate onKeyDown={this.onKeyDown}>
-          <TextField className={styles.input} ref="username" floatingLabelText="Brugernavn" id="username" name="username" type="text" />
-          <TextField className={styles.input} ref="password" floatingLabelText="Adgangskode" id="password" name="password" type="password" />
+        <form noValidate>
+          <TextField className={styles.input} ref="username" onKeyDown={this.onKeyDown} floatingLabelText="Brugernavn" id="username" name="username" type="text" />
+          <TextField className={styles.input} ref="password" onKeyDown={this.onKeyDown} floatingLabelText="Adgangskode" id="password" name="password" type="password" />
           <RaisedButton className={styles.button} label="Log ind" fullWidth onClick={this.handleSubmit} />
         </form>
       </div>

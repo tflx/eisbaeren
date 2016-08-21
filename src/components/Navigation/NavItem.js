@@ -8,11 +8,6 @@ export default class NavItem extends Component {
     href: PropTypes.string,
     label: PropTypes.string
   }
-  state = {
-  }
-
-  componentDidMount() {
-  }
 
   render() {
     return (
