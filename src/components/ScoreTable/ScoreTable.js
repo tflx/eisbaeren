@@ -22,22 +22,50 @@ export default class Score extends Component {
     };
     fetch(options.hostname, options)
       .then((response) => response.json().then((json) => {
-        const arr = json.extractorData.data[0].group;
+        // console.log(json);
+        const arr = json.extractorData.data;
         this.setState({fetching: false});
         this.setState({table: arr});
       }));
   }
 
-  getPlayed(position) {
-    const v = parseInt(position['V number'][0].text, 10);
-    const u = parseInt(position['U number'][0].text, 10);
-    const t = parseInt(position['T number'][0].text, 10);
-    return (v + u + t);
+  renderTable() {
+    const cellStyle = {
+      width: '20px',
+      padding: '0px',
+      textAlign: 'right'
+    };
+
+    const cellNoStyle = Object.assign({}, cellStyle);
+    cellNoStyle.textAlign = 'left';
+    cellNoStyle.fontWeight = '700';
+
+    const nameCellStyle = {
+      width: '150px',
+      padding: '0px'
+    };
+
+    const cellPointStyle = Object.assign({}, cellNoStyle);
+    cellPointStyle.textAlign = 'right';
+    cellPointStyle.width = '40px';
+
+    this.state.table.map((row, index) => {
+      const scoreRow = row.group[0];
+
+      return (
+        <TableRow selectable={false} key={index}>
+          <TableRowColumn style={cellNoStyle}>{index}</TableRowColumn>
+          <TableRowColumn style={nameCellStyle}>{scoreRow.team[0].text}</TableRowColumn>
+          <TableRowColumn style={cellStyle}>{scoreRow.won[0].text}</TableRowColumn>
+          <TableRowColumn style={cellStyle}>{scoreRow.tie[0].text}</TableRowColumn>
+          <TableRowColumn style={cellStyle}>{scoreRow.lost[0].text}</TableRowColumn>
+          <TableRowColumn style={cellPointStyle}>{scoreRow.points[0].text}</TableRowColumn>
+        </TableRow>
+      );
+    });
   }
 
   render() {
-    console.log(this.state.table);
-
     const cellStyle = {
       width: '20px',
       padding: '0px',
@@ -66,26 +94,22 @@ export default class Score extends Component {
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn style={cellNoStyle}>#</TableHeaderColumn>
-                <TableHeaderColumn style={nameCellStyle}>Name</TableHeaderColumn>
-                {/* <TableHeaderColumn>K</TableHeaderColumn>*/}
+                <TableHeaderColumn style={nameCellStyle}>Klub</TableHeaderColumn>
                 <TableHeaderColumn style={cellStyle}>V</TableHeaderColumn>
                 <TableHeaderColumn style={cellStyle}>U</TableHeaderColumn>
                 <TableHeaderColumn style={cellStyle}>T</TableHeaderColumn>
-                {/* <TableHeaderColumn>Score</TableHeaderColumn>*/}
                 <TableHeaderColumn style={cellPointStyle}>P</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody displayRowCheckbox={false}>
-              {this.state.table.map((position, index) => (
+              {this.state.table.map((row, index) => (
                 <TableRow selectable={false} key={index}>
                   <TableRowColumn style={cellNoStyle}>{index}</TableRowColumn>
-                  <TableRowColumn style={nameCellStyle}>{position['Hold link'][0].text}</TableRowColumn>
-                  {/* <TableRowColumn style={cellStyle}>{this.getPlayed(position)}</TableRowColumn>*/}
-                  <TableRowColumn style={cellStyle}>{position['V number'][0].text}</TableRowColumn>
-                  <TableRowColumn style={cellStyle}>{position['U number'][0].text}</TableRowColumn>
-                  <TableRowColumn style={cellStyle}>{position['T number'][0].text}</TableRowColumn>
-                  {/* <TableRowColumn>{position['Score number 1'][0].text} - {position['Score number 2'][0].text}</TableRowColumn>*/}
-                  <TableRowColumn style={cellPointStyle}>{position['P number'][0].text}</TableRowColumn>
+                  <TableRowColumn style={nameCellStyle}>{row.group[0].team[0].text}</TableRowColumn>
+                  <TableRowColumn style={cellStyle}>{row.group[0].won[0].text}</TableRowColumn>
+                  <TableRowColumn style={cellStyle}>{row.group[0].tie[0].text}</TableRowColumn>
+                  <TableRowColumn style={cellStyle}>{row.group[0].lost[0].text}</TableRowColumn>
+                  <TableRowColumn style={cellPointStyle}>{row.group[0].points[0].text}</TableRowColumn>
                 </TableRow>)
               )}
             </TableBody>
