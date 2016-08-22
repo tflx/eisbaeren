@@ -21,8 +21,7 @@ export default class ActivityList extends Component {
     this.setState({fetching: true});
     get('activities')
     .then(response => {
-      this.setState({activities: response});
-      this.setState({fetching: false});
+      this.setState({activities: response, fetching: false});
     });
   }
 

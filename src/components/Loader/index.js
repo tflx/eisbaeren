@@ -2,7 +2,8 @@ import React, {PropTypes} from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
 
 function Loader({...props}) {
-  const style = {};
+  const style = props.style || {};
+  const {size} = props;
 
   if (props.centered) {
     style.display = 'block';
@@ -14,13 +15,14 @@ function Loader({...props}) {
   }
 
   return (
-    <CircularProgress style={style} />
+    <CircularProgress style={style} size={size} />
   );
 }
 
 Loader.propTypes = {
   size: PropTypes.number,
-  centered: PropTypes.bool
+  centered: PropTypes.bool,
+  style: PropTypes.object
 };
 
 export default Loader;
