@@ -1,0 +1,21 @@
+.cell {
+  width: 20px;
+  padding: 0;
+  text-align: right;
+}
+
+.no {
+  composes: cell;
+  font-weight: 700;
+  text-align: left;
+}
+
+.name {
+  composes: cell;
+  width: 150px;
+}
+
+.points {
+  composes: cell;
+  font-weight: 700;
+}

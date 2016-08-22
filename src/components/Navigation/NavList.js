@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import config from '../../../mock-api/config.json';
+// import config from '../../../mock-api/config.json';
 
 export default class NavList extends Component {
 
@@ -12,9 +12,6 @@ export default class NavList extends Component {
   render() {
     return (
       <div>
-        {config.nav.map((item, index) => {
-          
-        })}
       </div>
     );
   }

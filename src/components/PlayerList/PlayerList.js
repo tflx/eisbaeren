@@ -5,7 +5,7 @@ import Divider from 'material-ui/Divider';
 import {get} from 'utils/holdsport';
 import Loader from 'components/Loader';
 import Person from 'material-ui/svg-icons/social/person';
-import Search from 'material-ui/svg-icons/action/search';
+// import Search from 'material-ui/svg-icons/action/search';
 import H1 from 'components/H1';
 
 export default class Players extends Component {

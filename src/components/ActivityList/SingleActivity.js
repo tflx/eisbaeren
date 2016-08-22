@@ -4,8 +4,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 // import FlatButton from 'material-ui/FlatButton';
 import soccer from '../../images/soccer.svg';
 import star from '../../images/star-circle.svg';
-import active from '../../images/check-circle.svg';
-import inactive from '../../images/close-circle.svg';
+// import active from '../../images/check-circle.svg';
+// import inactive from '../../images/close-circle.svg';
 // import marker from '../../images/map-marker.svg';
 // import calendar from '../../images/calendar-clock.svg';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
@@ -32,16 +32,16 @@ export default class SingleActivity extends Component {
 
 
   getStatusIcon() {
-    const {activity} = this.props;
-    let node = null;
-    switch (activity.status) {
-      case 1: node = <SvgIcon svg={active} className={styles.statusActive} />;
-        break;
-      case 2: node = <SvgIcon svg={inactive} className={styles.statusInactive} />;
-        break;
-      default: node = <span className={styles.infoIcon} />;
-    }
-    return <span className={styles.infoIcon} />;
+    // const {activity} = this.props;
+    const node = <span className={styles.infoIcon} />;
+    // switch (activity.status) {
+    //   case 1: node = <SvgIcon svg={active} className={styles.statusActive} />;
+    //     break;
+    //   case 2: node = <SvgIcon svg={inactive} className={styles.statusInactive} />;
+    //     break;
+    //   default: node = <span className={styles.infoIcon} />;
+    // }
+    return node;
     // return node;
   }
 
