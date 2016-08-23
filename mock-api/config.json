@@ -6,7 +6,8 @@
     "teamId": "2683"
   },
   "dai": {
-    "id": ""
+    "api": "https://extraction.import.io/query/extractor/e15378eb-8317-4417-9dd2-3b851ce2c649?_apikey=37f9da863e404efa8af4670f21d1b7c29c826c468ba751223a67b7ac33f65b67b39ee5dbc4f507eb3ebd2231a37237de3b042dd18a2ed8135e998b87d373e51807ab6c86a1d3a7539985733169d7a192&url=http%3A%2F%2Fresultater.dai-sport.dk%2Ftms%2FTurneringer-og-resultater%2FPulje-Stilling.aspx%3FPuljeId%3D301",
+    "league": "7.C C-4"
   },
   "colors": {
     "primary": "#f80015",

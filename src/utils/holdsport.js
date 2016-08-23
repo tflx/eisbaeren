@@ -1,6 +1,6 @@
 
 import config from '../../mock-api/config.json';
-import {getUser, encodeLogin} from './user';
+import {getLogin, encodeLogin} from './user';
 
 
 function getOptions() {
@@ -9,7 +9,7 @@ function getOptions() {
     // hostname: 'https://api.holdsport.dk/v1/teams/2683/',
     hostname: `${config.holdsport.api}`,
     port: 80,
-    headers: { Authorization: getUser() }
+    headers: { Authorization: getLogin() }
   };
 
   return options;
@@ -31,6 +31,23 @@ export function get(path) {
   const options = getOptions();
   const subPath = path ? `teams/${config.holdsport.teamId}/${path}` : 'user';
 
+  return fetch(options.hostname + subPath, options)
+  .then(response => handleResponse(response));
+}
+
+export function push(path, data) {
+  const options = {
+    method: 'POST',
+    hostname: `${config.holdsport.api}`,
+    port: 80,
+    headers: {
+      Authorization: getLogin(),
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: data
+  };
+  const subPath = `teams/${config.holdsport.teamId}/${path}`;
   return fetch(options.hostname + subPath, options)
   .then(response => handleResponse(response));
 }

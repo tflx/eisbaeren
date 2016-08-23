@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getUser} from '../utils/user';
+import {getLogin} from '../utils/user';
 import ActivityList from 'components/ActivityList/ActivityList';
 import Login from 'components/Login/Login';
 
@@ -11,7 +11,7 @@ export default class Index extends Component {
 
   componentWillMount() {
     let isLoggedIn = false;
-    if (getUser() !== undefined) isLoggedIn = true;
+    if (getLogin() !== undefined) isLoggedIn = true;
     this.setState({isLoggedIn});
   }
 

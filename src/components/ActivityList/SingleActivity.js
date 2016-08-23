@@ -1,17 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import {Card, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-// import FlatButton from 'material-ui/FlatButton';
 import soccer from '../../images/soccer.svg';
 import star from '../../images/star-circle.svg';
-// import active from '../../images/check-circle.svg';
-// import inactive from '../../images/close-circle.svg';
-// import marker from '../../images/map-marker.svg';
-// import calendar from '../../images/calendar-clock.svg';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import * as dateUtil from '../../utils/date';
 import styles from './Activities.css';
-// import Button from 'components/Button';
 import Loader from 'components/Loader';
 
 export default class SingleActivity extends Component {

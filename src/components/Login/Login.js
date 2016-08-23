@@ -27,11 +27,10 @@ export default class Login extends Component {
 
     const {username, password} = this.refs;
 
-
     validateHoldsportLogin(username.input.value, password.input.value)
     .then((response) => {
       console.log(response);
-      saveUser(username.input.value, password.input.value);
+      saveUser(response, username.input.value, password.input.value);
       this.props.onLogin();
     })
     .catch((error) => {

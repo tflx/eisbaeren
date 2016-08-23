@@ -1,0 +1,52 @@
+@import 'global/variables.css';
+
+.search {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: calc(2 * var(--gutter));
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.search-icon {
+  flex: 0 1 auto;
+  width: 20px;
+  height: 45px;
+  color: rgba(0, 0, 0, 0.298);
+  padding-right: 30px;
+}
+
+.all-mail {
+  flex: 0 1 auto;
+  color: var(--secondary-color);
+  font-size: 14px;
+  height: 30px;
+}
+
+.list {
+  font-size: 16px;
+}
+
+.player {
+  color: rgba(0, 0, 0, 0.541);
+  margin: 30px 0 10px;
+
+  > div {
+    margin: 5px 0;
+  }
+
+  a {
+    /* color: inherit; */
+  }
+}
+
+.licens {
+  float: right;
+}
+
+.name {
+  color: black;
+}
+
+.icon {
+  margin-right: 10px;
+}

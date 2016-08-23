@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {get} from 'utils/holdsport';
+import {getUser} from 'utils/user';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Loader from 'components/Loader';
@@ -10,22 +10,12 @@ import Person from 'material-ui/svg-icons/social/person';
 export default class ProfileEdit extends Component {
 
   state = {
-    data: null
+
   }
 
-  componentDidMount() {
-    this.getUser();
-  }
-
-  getUser() {
-    get().then((response) => {
-      this.setState({data: response});
-      console.log(this.state.data);
-    });
-  }
 
   getAvatar() {
-    const {profile_picture_path: path} = this.state.data;
+    const {profile_picture_path: path} = getUser();
     let node = null;
     if (path !== '') {
       node = (<Avatar src={path} />);
@@ -36,14 +26,14 @@ export default class ProfileEdit extends Component {
   }
 
   render() {
-    const user = this.state.data || null;
+    const user = getUser() || null;
     const info = user ? user.addresses[0] : null;
 
     return (
       <div>
         <H1>Profil</H1>
-        {!this.state.data ? <Loader centered /> : null}
-        {this.state.data ?
+        {!user ? <Loader centered /> : null}
+        {user ?
           <Card>
             <CardHeader avatar={this.getAvatar()} title={`${user.firstname} ${user.lastname}`} />
             <CardText>
