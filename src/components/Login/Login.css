@@ -1,9 +1,5 @@
 @import 'global/variables.css';
 
-.input {
-  width: 100% !important;
-}
-
 .button {
   margin: var(--gutter) 0;
 }

@@ -27,6 +27,19 @@
   margin-right: 10px;
 }
 
+.actions {
+  composes: info;
+  margin-top: 10px;
+}
+
+.status {
+  flex: 1 1 auto;
+}
+
+.details {
+  flex: 0 1 auto;
+}
+
 .status-active {
   composes: info-icon;
   color: var(--secondary-color);

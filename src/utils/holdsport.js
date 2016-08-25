@@ -35,19 +35,19 @@ export function get(path) {
   .then(response => handleResponse(response));
 }
 
-export function push(path, data) {
+export function push(path, data, method) {
   const options = {
-    method: 'POST',
-    hostname: `${config.holdsport.api}`,
+    method,
+    hostname: 'https://api.holdsport.dk',
     port: 80,
     headers: {
       Authorization: getLogin(),
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    body: data
+    body: JSON.stringify(data)
   };
-  const subPath = `teams/${config.holdsport.teamId}/${path}`;
+  const subPath = path;
   return fetch(options.hostname + subPath, options)
   .then(response => handleResponse(response));
 }

@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react';
+import {push} from 'utils/holdsport';
+import {browserHistory} from 'react-router';
 import {Card, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import soccer from '../../images/soccer.svg';
@@ -7,27 +9,28 @@ import SvgIcon from 'components/SvgIcon/SvgIcon';
 import * as dateUtil from '../../utils/date';
 import styles from './Activities.css';
 import Loader from 'components/Loader';
+import Status from 'components/Status/Status';
 
 export default class SingleActivity extends Component {
   static propTypes = {
     activity: PropTypes.object
   }
+
   state = {
-    activity: null,
-    fetching: false
+    fetching: false,
+    status: null
   };
 
-  getKickOff = () => {
-    const {activity} = this.props;
-    const start = new Date(activity.starttime);
-    const kickoff = new Date(start.getTime() + 45 * 60000);
-    return kickoff;
-  };
-
+  componentWillMount() {
+    const {status} = this.props.activity;
+    this.setState({status});
+  }
 
   getStatusIcon() {
-    // const {activity} = this.props;
     const node = <span className={styles.infoIcon} />;
+    return node;
+
+    // const {activity} = this.props;
     // switch (activity.status) {
     //   case 1: node = <SvgIcon svg={active} className={styles.statusActive} />;
     //     break;
@@ -35,44 +38,45 @@ export default class SingleActivity extends Component {
     //     break;
     //   default: node = <span className={styles.infoIcon} />;
     // }
-    return node;
     // return node;
   }
 
-  pad = (int) => (int < 10 ? `0${int}` : int);
-
-  changeStatus = (event) => {
-    console.log(event);
+  changeStatus = (newStatus) => {
     this.setState({fetching: true});
+    const data = {
+      activities_user: {
+        joined_status: newStatus,
+        picked: 1
+      }
+    };
+
+    const {action_method, action_path} = this.state.activity;
+    push(action_path, data, action_method)
+      .then((response) =>
+        this.setState({status: response.status_code, fetching: false})
+      );
+  }
+
+  showDetails = () => {
+    const {activity} = this.props;
+    browserHistory.push(`/activities/${activity.id}`);
   }
 
   render() {
     const {activity} = this.props;
-    const start = new Date(activity.starttime);
-    const kickoff = this.getKickOff();
-    const date = {
-      weekday: dateUtil.getDay(start.getDay()),
-      day: start.getDate(),
-      month: start.getMonth() + 1,
-      meet: `${this.pad(start.getHours())}:${this.pad(start.getMinutes())}`,
-      kickoff: `${this.pad(kickoff.getHours())}:${this.pad(kickoff.getMinutes())}`
-    };
     const showTime = activity.event_type_id === 1;
-    const convertedDate = `${date.weekday} ${date.day}/${date.month}`;
-    const time = showTime ? `- ${date.meet} (${date.kickoff})` : '';
+    const {time, convertedDate, kickoff} = dateUtil.parseDate(activity.starttime, showTime);
+    const eventIcon = activity.event_type_id === 1 ? soccer : star;
+
+
     const iconStyle = {
       width: '16px',
       height: '16px',
     };
-    const buttonStyle = {
-      flex: '0 1 auto',
-      boxShadow: 'none',
-      border: '1px solid lightgrey',
-      marginLeft: '-1px',
+    const iconStyleBig = {
+      width: '22px',
+      height: '22px'
     };
-    const iconStyleBig = Object.assign(iconStyle, {width: '22px', height: '22px'});
-    const eventIcon = activity.event_type_id === 1 ? soccer : star;
-
 
     const cardStyle = {
       paddingBottom: 0,
@@ -83,6 +87,11 @@ export default class SingleActivity extends Component {
       height: '32px',
       left: '-16px',
       top: '-7px'
+    };
+
+    const detailsButtonStyle = {
+      border: '1px solid lightgrey',
+      boxShadow: 'none'
     };
 
 
@@ -96,17 +105,17 @@ export default class SingleActivity extends Component {
             </div>
             <div className={styles.subInfo}>
               <span style={iconStyle} className={styles.infoIcon} />
-              <span className={styles.infoText}>{`${convertedDate} ${time}`}</span>
+              <span className={styles.infoText}>{`${convertedDate} - ${time} (${kickoff})`}</span>
             </div>
             <div className={styles.subInfo}>
               <span style={iconStyle} className={styles.infoIcon} />
               <span className={styles.infoText}>{activity.place}</span>
             </div>
-            <div className={styles.info}>
+            <div className={styles.actions}>
               {this.state.fetching ? <Loader size={0.3} className={styles.infoIcon} style={loaderStyle} /> : this.getStatusIcon()}
-              <span>
-                <RaisedButton style={buttonStyle} label={activity.status === 1 ? 'Tilmeldt' : 'Tilmeld'} disabled={activity.status === 1 || this.state.fetching} onClick={this.changeStatus} />
-                <RaisedButton style={buttonStyle} label={activity.status === 2 ? 'Afmeldt' : 'Afmeld'} disabled={activity.status === 2 || this.state.fetching} onClick={this.changeStatus} />
+              <Status status={this.state.status} disabled={this.state.fetching} className={styles.status} onClick={this.changeStatus} />
+              <span className={styles.details}>
+                <RaisedButton style={detailsButtonStyle} label="Detaljer" onClick={this.showDetails} />
               </span>
             </div>
           </div>

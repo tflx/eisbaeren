@@ -6,6 +6,7 @@ import Players from './views/Players';
 import Profile from './views/Profile';
 import Score from './views/Score';
 import Info from './views/Info';
+import ActivityDetailsView from './views/ActivityDetailsView';
 
 
 export default (
@@ -16,6 +17,7 @@ export default (
       <Route path="profil" component={Profile} />
       <Route path="stilling" component={Score} />
       <Route path="info" component={Info} />
+      <Route path="activities/:eventId" component={ActivityDetailsView} />
     </Route>
   </Router>
 );
