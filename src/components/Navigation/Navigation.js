@@ -5,18 +5,13 @@ import logo from 'static/logo.svg';
 import config from '../../../mock-api/config.json';
 import NavItem from './NavItem';
 import Float from './Float';
-import {getLogin} from '../../utils/user';
 
 export default class Navigation extends Component {
 
   state = {
-    open: false,
-    loggedIn: false
+    open: false
   }
 
-  componentWillMount() {
-    if (getLogin() !== undefined) this.setState({loggedIn: true});
-  }
 
   toggleOpen = () => {
     this.setState({open: !this.state.open});
