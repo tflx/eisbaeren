@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import styles from './Navigation.css';
 import logo from 'static/logo.svg';
@@ -7,6 +7,9 @@ import NavItem from './NavItem';
 import Float from './Float';
 
 export default class Navigation extends Component {
+  static propTypes = {
+    isLoggedIn: PropTypes.bool
+  }
 
   state = {
     open: false
@@ -34,9 +37,10 @@ export default class Navigation extends Component {
     const open = {
       transform: this.state.open ? `scale(${factor})` : 'scale(1)'
     };
+    const {isLoggedIn} = this.props;
 
     return (
-      <div>
+      <div className={isLoggedIn ? styles.isLoggedIn : styles.isNotLoggedIn}>
         <Float onClick={this.toggleOpen} open={this.state.open} />
         <div className={styles.navLayer} style={open} />
         {this.state.open ?
