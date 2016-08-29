@@ -1,0 +1,5 @@
+@import '../../global/variables.css';
+
+.profile {
+  margin-bottom: var(--gutter);
+}

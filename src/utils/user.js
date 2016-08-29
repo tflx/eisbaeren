@@ -6,12 +6,12 @@ export function getLogin() {
 }
 
 export function getUser() {
-  return cookie.load('holdsport_user');
+  return JSON.parse(localStorage.getItem('holdsport_user'));
 }
 
 export function deletUser() {
   cookie.remove('holdsport_login');
-  cookie.remove('holdsport_user');
+  localStorage.removeItem('holdsport_user');
 }
 
 
@@ -22,6 +22,6 @@ export function encodeLogin(username, password) {
 }
 
 export function saveUser(user, username, password) {
-  cookie.save('holdsport_user', user);
+  localStorage.setItem('holdsport_user', JSON.stringify(user));
   cookie.save('holdsport_login', encodeLogin(username, password));
 }

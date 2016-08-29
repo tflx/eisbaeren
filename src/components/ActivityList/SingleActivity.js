@@ -29,16 +29,6 @@ export default class SingleActivity extends Component {
   getStatusIcon() {
     const node = <span className={styles.infoIcon} />;
     return node;
-
-    // const {activity} = this.props;
-    // switch (activity.status) {
-    //   case 1: node = <SvgIcon svg={active} className={styles.statusActive} />;
-    //     break;
-    //   case 2: node = <SvgIcon svg={inactive} className={styles.statusInactive} />;
-    //     break;
-    //   default: node = <span className={styles.infoIcon} />;
-    // }
-    // return node;
   }
 
   changeStatus = (newStatus) => {

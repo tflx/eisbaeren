@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ProfileEdit from 'components/Profile/ProfileEdit';
 
-function Profile() {
+function Profile({...props}) {
   return (
-    <ProfileEdit />
+    <ProfileEdit {...props} />
   );
 }
 
 Profile.propTypes = {
+  onLogOut: PropTypes.func
 };
 
 export default Profile;

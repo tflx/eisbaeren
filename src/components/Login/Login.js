@@ -8,7 +8,7 @@ import styles from './Login.css';
 
 export default class Login extends Component {
   static propTypes = {
-    onLogin: PropTypes.func
+    onLoginSuccess: PropTypes.func
   }
 
   state = {
@@ -16,7 +16,6 @@ export default class Login extends Component {
   };
 
   onKeyDown = (event) => {
-    this.setState({error: false});
     if (event.keyCode === 13) {
       this.handleSubmit();
     }
@@ -25,13 +24,13 @@ export default class Login extends Component {
   handleSubmit = (event) => {
     if (event) event.preventDefault();
 
+    this.setState({error: false});
     const {username, password} = this.refs;
 
     validateHoldsportLogin(username.input.value, password.input.value)
     .then((response) => {
-      console.log(response);
       saveUser(response, username.input.value, password.input.value);
-      this.props.onLogin();
+      this.props.onLoginSuccess();
     })
     .catch((error) => {
       console.log('ERROR!!', error);

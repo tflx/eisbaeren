@@ -1,16 +1,53 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import styles from './MainContainer.css';
+import Navigation from 'components/Navigation/Navigation';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import config from '../../../mock-api/config.json';
+import {getLogin, deletUser} from '../../utils/user';
 
-function MainContainer({children}) {
-  return (
-    <div className={styles.mainContainer} >
-      {children}
-    </div>
-  );
+
+export default class MainContainer extends Component {
+  static propTypes = {
+    children: PropTypes.node
+  }
+
+  state = {
+    isLoggedIn: false
+  };
+
+  componentWillMount() {
+    let isLoggedIn = false;
+    if (getLogin() !== undefined) isLoggedIn = true;
+    this.setState({isLoggedIn});
+  }
+
+  onLoginSuccess = () => {
+    this.setState({isLoggedIn: true});
+  }
+
+  onLogOut = () => {
+    deletUser();
+    this.setState({isLoggedIn: false});
+  }
+
+
+  render() {
+    const muiTheme = getMuiTheme({
+      palette: {
+        primary1Color: config.colors.secondary,
+        primary2Color: config.colors.primary,
+      }
+    });
+    const children = React.cloneElement(this.props.children, {onLoginSuccess: this.onLoginSuccess, onLogOut: this.onLogOut, isLoggedIn: this.state.isLoggedIn});
+
+    return (
+      <div className={styles.mainContainer}>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          {children}
+        </MuiThemeProvider>
+        <Navigation isLoggedIn={this.state.isLoggedIn} />
+      </div>
+    );
+  }
 }
-
-MainContainer.propTypes = {
-  children: PropTypes.node
-};
-
-export default MainContainer;

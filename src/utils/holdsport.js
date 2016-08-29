@@ -6,7 +6,6 @@ import {getLogin, encodeLogin} from './user';
 function getOptions() {
   const options = {
     method: 'GET',
-    // hostname: 'https://api.holdsport.dk/v1/teams/2683/',
     hostname: `${config.holdsport.api}`,
     port: 80,
     headers: { Authorization: getLogin() }
@@ -47,8 +46,7 @@ export function push(path, data, method) {
     },
     body: JSON.stringify(data)
   };
-  const subPath = path;
-  return fetch(options.hostname + subPath, options)
+  return fetch(options.hostname + path, options)
   .then(response => handleResponse(response));
 }
 

@@ -60,8 +60,6 @@ export default class Players extends Component {
   render() {
     const inputStyle = {
       flex: '1 1 auto',
-      // display: 'block'
-      // width: 'calc(100% - 30px)'
       width: 'auto'
     };
 
