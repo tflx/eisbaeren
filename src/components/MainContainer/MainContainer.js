@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {browserHistory} from 'react-router';
 import styles from './MainContainer.css';
 import Navigation from 'components/Navigation/Navigation';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -29,6 +30,7 @@ export default class MainContainer extends Component {
   onLogOut = () => {
     deletUser();
     this.setState({isLoggedIn: false});
+    browserHistory.push('/');
   }
 
 

@@ -1,39 +1,21 @@
 import React, {Component, PropTypes} from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Loader from 'components/Loader';
 import H1 from 'components/H1';
 import Avatar from 'material-ui/Avatar';
 import Person from 'material-ui/svg-icons/social/person';
 import styles from './ProfileEdit.css';
+import edit from '../../images/pencil.svg';
 import email from '../../images/email.svg';
 import phone from '../../images/cellphone-iphone.svg';
 import location from '../../images/map-marker.svg';
-import save from '../../images/content-save.svg';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 
-export default class ProfileEdit extends Component {
+export default class Profile extends Component {
   static propTypes = {
-    onSaveChanges: PropTypes.func,
+    onEdit: PropTypes.func,
     user: PropTypes.object
-  }
-
-
-  onSave = () => {
-    const formData = {
-      addresses: [
-        {
-          street: this.refs.street.getValue(),
-          mobile: this.refs.mobile.getValue(),
-          postcode: this.refs.postcode.getValue(),
-          city: this.refs.city.getValue(),
-          email: this.refs.email.getValue(),
-        }
-      ]
-    };
-    const data = {...this.props.user, ...formData};
-    this.props.onSaveChanges({user: data});
   }
 
   getAvatar() {
@@ -60,14 +42,13 @@ export default class ProfileEdit extends Component {
           <Card className={styles.profile}>
             <CardHeader avatar={this.getAvatar()} title={`${user.firstname} ${user.lastname}`} />
             <CardText>
-              <SvgIcon svg={email} /><TextField ref="email" name="email" defaultValue={info.email} />
-              <SvgIcon svg={phone} /><TextField ref="mobile" name="phone" defaultValue={info.mobile} />
-              <SvgIcon svg={location} /><TextField ref="street" name="street" defaultValue={info.street} />
-              <TextField ref="postcode" style={{width: '40px'}} maxLength="4" name="postcode" defaultValue={info.postcode} />
-              <TextField ref="city" name="city" defaultValue={info.city} />
+              <p><SvgIcon svg={email} />{info.email}</p>
+              <p><SvgIcon svg={phone} />{info.mobile}</p>
+              <p><SvgIcon svg={location} />{info.street}</p>
+              <p>{`${info.postcode} ${info.city}`}</p>
             </CardText>
             <CardActions>
-              <FlatButton icon={<SvgIcon svg={save} />} label="Gem" onClick={this.onSave} />
+              <FlatButton label="Rediger" icon={<SvgIcon svg={edit} />} onClick={this.props.onEdit} />
             </CardActions>
           </Card>
           : null}

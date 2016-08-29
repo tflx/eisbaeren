@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {get} from '../../utils/holdsport';
+import holdsport from '../../utils/holdsport';
 import SingleActivity from './SingleActivity';
 import H1 from 'components/H1';
 import styles from './Activities.css';
@@ -19,7 +19,7 @@ export default class ActivityList extends Component {
 
   getActivities() {
     this.setState({fetching: true});
-    get('activities')
+    holdsport.get('activities')
     .then(response => {
       this.setState({activities: response, fetching: false});
     });

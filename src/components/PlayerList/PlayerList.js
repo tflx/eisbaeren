@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
-import {get} from 'utils/holdsport';
+import holdsport from 'utils/holdsport';
 import {getUser} from 'utils/user';
 import Loader from 'components/Loader';
 // import Person from 'material-ui/svg-icons/social/person';
@@ -29,7 +29,7 @@ export default class Players extends Component {
 
   getPlayerList() {
     this.setState({fetching: true});
-    get('members').then((response) => {
+    holdsport.get('members').then((response) => {
       this.setState({
         players: response,
         filtered: response,

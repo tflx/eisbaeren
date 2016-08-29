@@ -14,7 +14,7 @@ function getOptions() {
   return options;
 }
 
-export function validateHoldsportLogin(username, password) {
+function validateHoldsportLogin(username, password) {
   const options = getOptions();
   options.headers = { Authorization: encodeLogin(username, password) };
   const subPath = 'user';
@@ -26,7 +26,7 @@ export function validateHoldsportLogin(username, password) {
   );
 }
 
-export function get(path) {
+function get(path) {
   const options = getOptions();
   const subPath = path ? `teams/${config.holdsport.teamId}/${path}` : 'user';
 
@@ -34,7 +34,7 @@ export function get(path) {
   .then(response => handleResponse(response));
 }
 
-export function push(path, data, method) {
+function push(path, data, method) {
   const options = {
     method,
     hostname: 'https://api.holdsport.dk',
@@ -67,3 +67,9 @@ function handleResponse(response) {
   error.response = response;
   throw error;
 }
+
+export default {
+  get,
+  push,
+  validateHoldsportLogin
+};

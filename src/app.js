@@ -21,11 +21,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 /**
- * Accept the modules for hot reloading. You'll need to this for all entry modu les.
+ * Accept the modules for hot reloading. You'll need to this for all entry modules.
  */
 function acceptHotModules() {
   if (module.hot) {
-    module.hot.accept('./views/Index', () => configurePage());
+    module.hot.accept('./views/IndexView', () => configurePage());
   }
 }
 
