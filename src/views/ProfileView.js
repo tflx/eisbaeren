@@ -3,7 +3,7 @@ import ProfileEdit from 'components/Profile/ProfileEdit';
 import Profile from 'components/Profile/Profile';
 import RaisedButton from 'material-ui/RaisedButton';
 import config from '../../mock-api/config.json';
-import {getUser} from 'utils/user';
+import {getUser, saveUser} from 'utils/user';
 import holdsport from 'utils/holdsport';
 
 

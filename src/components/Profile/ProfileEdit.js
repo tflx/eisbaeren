@@ -22,18 +22,22 @@ export default class ProfileEdit extends Component {
 
   onSave = () => {
     const formData = {
-      addresses: [
-        {
-          street: this.refs.street.getValue(),
-          mobile: this.refs.mobile.getValue(),
-          postcode: this.refs.postcode.getValue(),
-          city: this.refs.city.getValue(),
-          email: this.refs.email.getValue(),
-        }
-      ]
+      user: {
+        firstname: this.props.user.firstname,
+        lastname: this.props.user.lastname,
+        addresses: [
+          {
+            street: this.refs.street.getValue(),
+            mobile: this.refs.mobile.getValue(),
+            postcode: this.refs.postcode.getValue(),
+            city: this.refs.city.getValue(),
+            email: this.refs.email.getValue(),
+          }
+        ]
+      }
     };
-    const data = {...this.props.user, ...formData};
-    this.props.onSaveChanges({user: data});
+    // const data = {...this.props.user, ...formData};
+    this.props.onSaveChanges(formData);
   }
 
   getAvatar() {

@@ -21,7 +21,10 @@ export function encodeLogin(username, password) {
   return encoded;
 }
 
-export function saveUser(user, username, password) {
+export function saveUser(user) {
   localStorage.setItem('holdsport_user', JSON.stringify(user));
+}
+
+export function saveLogin(username, password) {
   cookie.save('holdsport_login', encodeLogin(username, password));
 }

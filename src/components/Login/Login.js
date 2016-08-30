@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {saveUser} from '../../utils/user';
+import {saveUser, saveLogin} from '../../utils/user';
 import {validateHoldsportLogin} from '../../utils/holdsport';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -29,7 +29,8 @@ export default class Login extends Component {
 
     validateHoldsportLogin(username.input.value, password.input.value)
     .then((response) => {
-      saveUser(response, username.input.value, password.input.value);
+      saveUser(response);
+      saveLogin(username.input.value, password.input.value);
       this.props.onLoginSuccess();
     })
     .catch((error) => {
