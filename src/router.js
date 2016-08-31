@@ -5,7 +5,7 @@ import IndexView from './views/IndexView';
 import Players from './views/Players';
 import ProfileView from './views/ProfileView';
 import Score from './views/Score';
-import Info from './views/Info';
+import InfoView from './views/InfoView';
 import ActivityDetailsView from './views/ActivityDetailsView';
 
 
@@ -16,7 +16,7 @@ export default (
       <Route path="spillere" component={Players} />
       <Route path="profil" component={ProfileView} />
       <Route path="stilling" component={Score} />
-      <Route path="info" component={Info} />
+      <Route path="info" component={InfoView} />
       <Route path="activities/:eventId" component={ActivityDetailsView} />
     </Route>
   </Router>

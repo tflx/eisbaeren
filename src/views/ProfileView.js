@@ -34,6 +34,11 @@ export default class ProfileView extends Component {
     .then((response) => {
       console.log(response);
       this.setState({editing: false});
+
+      holdsport.get()
+      .then(json =>
+        console.log(json)
+      );
     });
   }
 
@@ -41,10 +46,11 @@ export default class ProfileView extends Component {
     const user = getUser();
     return (
       <div>
-        {this.state.editing ?
+        {/* this.state.editing ?
           <ProfileEdit user={user} onSaveChanges={this.onSaveChanges} />
           : <Profile user={user} onEdit={this.onEdit} />
-        }
+        */}
+        <Profile user={user} />
         <RaisedButton labelColor="white" backgroundColor={config.colors.primary} label="Log ud" fullWidth onClick={this.onLogout} />
       </div>
     );

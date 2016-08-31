@@ -47,9 +47,9 @@ export default class Profile extends Component {
               <p><SvgIcon svg={location} />{info.street}</p>
               <p>{`${info.postcode} ${info.city}`}</p>
             </CardText>
-            <CardActions>
+            {/* <CardActions>
               <FlatButton label="Rediger" icon={<SvgIcon svg={edit} />} onClick={this.props.onEdit} />
-            </CardActions>
+            </CardActions>*/}
           </Card>
           : null}
       </div>

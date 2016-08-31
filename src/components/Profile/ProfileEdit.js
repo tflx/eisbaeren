@@ -32,7 +32,8 @@ export default class ProfileEdit extends Component {
             postcode: this.refs.postcode.getValue(),
             city: this.refs.city.getValue(),
             email: this.refs.email.getValue(),
-          }
+          },
+          {}
         ]
       }
     };
