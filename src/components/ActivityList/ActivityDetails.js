@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {get, push} from 'utils/holdsport';
+import holdsport from 'utils/holdsport';
 import * as dateUtil from '../../utils/date';
 import Loader from 'components/Loader';
 import H1 from 'components/H1';
@@ -32,7 +32,7 @@ export default class ActivityDetails extends Component {
   getActivity() {
     const {eventId} = this.props;
     this.setState({fetching: true});
-    get(`activities/${eventId}`).then((response) => {
+    holdsport.get(`activities/${eventId}`).then((response) => {
       this.setState({activity: response, status: response.status, fetching: false});
     });
   }
@@ -55,7 +55,7 @@ export default class ActivityDetails extends Component {
     };
 
     const {action_method, action_path} = this.state.activity;
-    push(action_path, data, action_method)
+    holdsport.push(action_path, data, action_method)
       .then((response) =>
         this.setState({status: response.status_code, fetching: false})
       );
@@ -105,7 +105,7 @@ export default class ActivityDetails extends Component {
             </div>
 
             <div>
-              <GameCard attending={this.getAttendingPlayers()} />
+              <GameCard attending={this.getAttendingPlayers()} starttime={activity.starttime} comment={activity.comment} />
             </div>
 
             <div>

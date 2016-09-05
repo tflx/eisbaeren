@@ -73,7 +73,7 @@ export default class Score extends Component {
   render() {
     return (
       <div>
-        <H1>Score</H1>
+        <H1>Stilling</H1>
         {this.state.fetching ? <Loader centered /> : null}
         {this.state.table ?
           <Table selectable={false} >

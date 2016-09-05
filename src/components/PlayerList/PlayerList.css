@@ -28,11 +28,12 @@
 
 .player {
   color: rgba(0, 0, 0, 0.541);
-  margin: 30px 0 10px;
+  margin: var(--gutter) 0 10px;
 
+  /*
   > div {
     margin: 5px 0;
-  }
+  } */
 
   a {
     /* color: inherit; */

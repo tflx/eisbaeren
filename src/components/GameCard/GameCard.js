@@ -3,13 +3,16 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import Loader from 'components/Loader';
-import {get} from 'utils/holdsport';
+import holdsport from 'utils/holdsport';
 import card from '../../images/account-card-details.svg';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
+import config from '../../../mock-api/config.json';
 
 export default class GameCard extends Component {
   static propTypes = {
-    attending: PropTypes.array
+    attending: PropTypes.array,
+    starttime: PropTypes.string,
+    comment: PropTypes.string
   }
 
   state = {
@@ -32,7 +35,7 @@ export default class GameCard extends Component {
     const mapped = [];
 
 
-    get('members').then((response) => {
+    holdsport.get('members').then((response) => {
       players = response;
 
       for (const attendingPlayer of attending) {
@@ -46,6 +49,13 @@ export default class GameCard extends Component {
     });
   }
 
+  parseStarttime() {
+  }
+
+  parseGameNo() {
+    return this.props.comment.match(/kamp nr. (\d+(\.\d)*)/i)[1];
+  }
+
   render() {
     const actions = [<FlatButton label="Luk"onTouchTap={this.handleClose} />];
     const attending = this.state.attending;
@@ -56,6 +66,8 @@ export default class GameCard extends Component {
         <Dialog title="Kampkort"actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose}>
           {attending ?
             <div>
+              <div>Række: {config.dai.league}, Pulje: {config.dai.division}</div>
+              <div>Kamp nr. {this.parseGameNo()}</div>
               <div>Navn<span><SvgIcon svg={card} /></span></div>
               <div>
                 {attending.map((player, index) =>

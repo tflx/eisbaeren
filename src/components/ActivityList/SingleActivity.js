@@ -3,8 +3,10 @@ import {push} from 'utils/holdsport';
 import {browserHistory} from 'react-router';
 import {Card, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
 import soccer from '../../images/soccer.svg';
 import star from '../../images/star-circle.svg';
+import arrow from '../../images/arrow-right.svg';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import * as dateUtil from '../../utils/date';
 import styles from './Activities.css';
@@ -81,7 +83,16 @@ export default class SingleActivity extends Component {
 
     const detailsButtonStyle = {
       border: '1px solid lightgrey',
-      boxShadow: 'none'
+      boxShadow: 'none',
+      borderRadius: '50%',
+      width: '40px',
+      height: '40px',
+      padding: '0',
+    };
+
+    const arrowButtonStyle = {
+      width: '46px',
+      height: '46px',
     };
 
 
@@ -89,23 +100,29 @@ export default class SingleActivity extends Component {
       <Card containerStyle={cardStyle}>
         <CardText>
           <div>
-            <div className={styles.info}>
-              <SvgIcon svg={eventIcon} style={iconStyleBig} className={styles.infoIcon} />
-              <span className={styles.infoText}>{activity.name}</span>
+
+            <div>
+              <div className={styles.info}>
+                {/* <SvgIcon svg={eventIcon} style={iconStyleBig} className={styles.infoIcon} />*/}
+                <span className={styles.infoText}>{activity.name}</span>
+              </div>
+              <div className={styles.subInfo}>
+                {/* <span style={iconStyle} className={styles.infoIcon} />*/}
+                <span className={styles.infoText}>{`${convertedDate} - ${time} (${kickoff})`}</span>
+              </div>
+              <div className={styles.subInfo}>
+                {/* <span style={iconStyle} className={styles.infoIcon} />*/}
+                <span className={styles.infoText}>{activity.place}</span>
+              </div>
             </div>
-            <div className={styles.subInfo}>
-              <span style={iconStyle} className={styles.infoIcon} />
-              <span className={styles.infoText}>{`${convertedDate} - ${time} (${kickoff})`}</span>
-            </div>
-            <div className={styles.subInfo}>
-              <span style={iconStyle} className={styles.infoIcon} />
-              <span className={styles.infoText}>{activity.place}</span>
-            </div>
+
             <div className={styles.actions}>
               {this.state.fetching ? <Loader size={0.3} className={styles.infoIcon} style={loaderStyle} /> : this.getStatusIcon()}
               <Status status={this.state.status} disabled={this.state.fetching} className={styles.status} onClick={this.changeStatus} />
               <span className={styles.details}>
-                <RaisedButton style={detailsButtonStyle} label="Detaljer" onClick={this.showDetails} />
+                <IconButton onClick={this.showDetails} style={detailsButtonStyle}>
+                  <SvgIcon svg={arrow} width="24px" />
+                </IconButton>
               </span>
             </div>
           </div>
