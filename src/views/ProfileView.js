@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
-import ProfileEdit from 'components/Profile/ProfileEdit';
+// import ProfileEdit from 'components/Profile/ProfileEdit';
 import Profile from 'components/Profile/Profile';
 import RaisedButton from 'material-ui/RaisedButton';
 import config from '../../mock-api/config.json';
-import {getUser, saveUser} from 'utils/user';
-import holdsport from 'utils/holdsport';
+// import {getUser, saveUser} from 'utils/user';
+import {getUser} from 'utils/user';
+// import holdsport from 'utils/holdsport';
 
 
 export default class ProfileView extends Component {
@@ -24,7 +25,7 @@ export default class ProfileView extends Component {
     this.setState({editing: true});
   }
 
-  onSaveChanges = (user) => {
+  /* onSaveChanges = (user) => {
     const path = '/v1/user';
     const method = 'PUT';
     const data = user;
@@ -40,7 +41,7 @@ export default class ProfileView extends Component {
         console.log(json)
       );
     });
-  }
+  }*/
 
   render() {
     const user = getUser();

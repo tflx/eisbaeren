@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {saveUser, saveLogin} from '../../utils/user';
-import {validateHoldsportLogin} from '../../utils/holdsport';
+import holdsport from '../../utils/holdsport';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
 import H1 from 'components/H1';
 import styles from './Login.css';
 
@@ -12,7 +13,7 @@ export default class Login extends Component {
   }
 
   state = {
-    error: false
+    snackbarOpen: false
   };
 
   onKeyDown = (event) => {
@@ -24,10 +25,10 @@ export default class Login extends Component {
   handleSubmit = (event) => {
     if (event) event.preventDefault();
 
-    this.setState({error: false});
+    this.setState({snackbarOpen: false});
     const {username, password} = this.refs;
 
-    validateHoldsportLogin(username.input.value, password.input.value)
+    holdsport.validateHoldsportLogin(username.input.value, password.input.value)
     .then((response) => {
       saveUser(response);
       saveLogin(username.input.value, password.input.value);
@@ -35,20 +36,30 @@ export default class Login extends Component {
     })
     .catch((error) => {
       console.log('ERROR!!', error);
-      this.setState({error: true});
+      this.setState({snackbarOpen: true});
     });
   }
 
   render() {
+    const style = {
+      backgroundColor: 'red'
+    };
+
     return (
       <div>
         <H1>Holdsport login</H1>
-        {this.state.error ? <p className={styles.error}>Forkert login!</p> : <p className={styles.error}>&nbsp;</p>}
         <form noValidate>
           <TextField fullWidth className={styles.input} ref="username" onKeyDown={this.onKeyDown} floatingLabelText="Brugernavn" id="username" name="username" type="text" />
           <TextField fullWidth className={styles.input} ref="password" onKeyDown={this.onKeyDown} floatingLabelText="Adgangskode" id="password" name="password" type="password" />
           <RaisedButton className={styles.button} label="Log ind" fullWidth onClick={this.handleSubmit} />
         </form>
+        <Snackbar
+          open={this.state.snackbarOpen}
+          message="Fejl i brugernavn eller adgangskode"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+          bodyStyle={style}
+        />
       </div>
     );
   }

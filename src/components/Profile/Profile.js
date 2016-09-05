@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
+// import FlatButton from 'material-ui/FlatButton';
 import Loader from 'components/Loader';
 import H1 from 'components/H1';
 import Avatar from 'material-ui/Avatar';
 import Person from 'material-ui/svg-icons/social/person';
 import styles from './ProfileEdit.css';
-import edit from '../../images/pencil.svg';
+// import edit from '../../images/pencil.svg';
 import email from '../../images/email.svg';
 import phone from '../../images/cellphone-iphone.svg';
 import location from '../../images/map-marker.svg';

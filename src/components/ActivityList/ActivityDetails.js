@@ -38,11 +38,9 @@ export default class ActivityDetails extends Component {
   }
 
   getAttendingPlayers() {
-    let players = [];
-    players = this.state.activity.activities_users.filter((user) =>
+    return this.state.activity.activities_users.filter((user) =>
       user.status_code === 1
     );
-    return players;
   }
 
   changeStatus = (newStatus) => {
