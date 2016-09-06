@@ -1,13 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import * as date from 'utils/date';
 import styles from './Rsvps.css';
-import Collapse from 'react-collapse';
-import Subheader from 'material-ui/Subheader';
-import RaisedButton from 'material-ui/RaisedButton';
-import arrow from '../../images/arrow-down.svg';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
-import Divider from 'components/Divider';
+import DateString from 'components/DateString';
 
 export default class Rsvps extends Component {
   static propTypes = {
@@ -26,8 +20,7 @@ export default class Rsvps extends Component {
   renderList(list) {
     const users = [];
     users.push(list.map((user, index) => {
-      const d = date.parseDate(user.updated_at);
-      return (<li key={index}>{user.name} - <span>({d.convertedDate} - {d.time})</span></li>);
+      return (<li key={index}>{user.name} - <DateString date={user.updated_at} /></li>);
     }));
     return users;
   }
@@ -56,10 +49,6 @@ export default class Rsvps extends Component {
       backgroundColor: 'lightgrey',
       color: 'black',
       fontSize: '12px'
-    };
-
-    const buttonStyle = {
-      boxShadow: '0'
     };
 
     return (

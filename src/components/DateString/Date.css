@@ -1,0 +1,6 @@
+@import 'global/variables.css';
+
+.date {
+  color: var(--grey);
+  font-size: 12px;
+}
