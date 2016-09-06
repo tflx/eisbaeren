@@ -1,14 +1,15 @@
 /* global google */
 import React, {Component, PropTypes} from 'react';
 import config from '../../../mock-api/config.json';
-import scriptLoader from 'utils/script-loader';
+// import scriptLoader from 'utils/script-loader';
 
 export default class StaticMap extends Component {
   static propTypes = {
     address: PropTypes.string
   }
   state = {
-    map: null
+    map: null,
+    directions: null
   };
 
   componentDidMount() {
@@ -58,13 +59,16 @@ export default class StaticMap extends Component {
     const height = 150;
     // const map = `https://maps.googleapis.com/maps/api/staticmap?center=`Brooklyn+Bridge,New+York,NY`&zoom=13&size=600x300&maptype=roadmap`;
     const map = `https://maps.googleapis.com/maps/api/staticmap?center=${addr}&zoom=14&size=${width}x${height}&maptype=roadmap&key=${config.google.staticApi}`;
-    this.setState({map});
+    
+    const directions = `comgooglemaps://?daddr=${addr}&directionsmode=driving`;
+    
+    this.setState({map, directions});
   }
 
   render() {
     return (
       <div>
-        {this.state.map ? <img alt="map" src={this.state.map} /> : null}
+        {this.state.map ? <a href={this.state.directions}><img alt="map" src={this.state.map} /></a> : null}
       </div>
     );
   }
