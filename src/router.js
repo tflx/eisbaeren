@@ -23,7 +23,7 @@ export default (
       <Route path="profil" component={ProfileView} onEnter={requireAuth} />
       <Route path="stilling" component={Score} onEnter={requireAuth} />
       <Route path="info" component={InfoView} onEnter={requireAuth} />
-      <Route path="activities/:eventId" component={ActivityDetailsView} onEnter={requireAuth} />
+      <Route path="aktiviteter/id/:eventId" component={ActivityDetailsView} onEnter={requireAuth} />
     </Route>
   </Router>
 );

@@ -51,7 +51,7 @@ export default class SingleActivity extends Component {
 
   showDetails = () => {
     const {activity} = this.props;
-    browserHistory.push(`/activities/${activity.id}`);
+    browserHistory.push(`/aktiviteter/id/${activity.id}`);
   }
 
   render() {
