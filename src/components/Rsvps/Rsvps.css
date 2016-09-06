@@ -1,0 +1,19 @@
+@import 'global/variables.css';
+
+.accordion {
+  display: none;
+}
+
+.accordion-toggle {
+  transition: transform 0.3s;
+}
+
+.accordion-toggle-up {
+  composes: accordion-toggle;
+  transform: rotate(180deg);
+}
+
+.list {
+  list-style: none;
+  padding: calc(var(--gutter) / 2);
+}

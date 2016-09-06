@@ -16,7 +16,8 @@
     "copenhagen": "2618425"
   },
   "google": {
-    "apikey": "AIzaSyCS1HuDMBZS_TGKYebYCu9MlYfhWYAcv-4"
+    "apikey": "AIzaSyCS1HuDMBZS_TGKYebYCu9MlYfhWYAcv-4",
+    "staticApi": "AIzaSyBoy2CYfNCIyURZntONP_cK0k6wtP2JOGI"
   },
   "contentful": {
     "productionApi": "a8300521622c773ceaf048ada58d64f596cb75c374a58f1ffd6c993a3ad49bd3",

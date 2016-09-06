@@ -1,0 +1,7 @@
+@import 'global/variables.css';
+
+.divider {
+  height: 1px;
+  border: none;
+  background-color: #e0e0e0;
+}

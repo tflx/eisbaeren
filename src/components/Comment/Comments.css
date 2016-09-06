@@ -1,0 +1,45 @@
+@import 'global/variables.css';
+
+.comments {
+  list-style: none;
+
+  li {
+    margin-bottom: var(--gutter);
+  }
+}
+
+.comment-header {
+  display: flex;
+}
+
+.comment-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 0 1 auto;
+}
+
+.comment-date {
+  color: var(--grey);
+  font-size: 12px;
+  margin-left: 5px;
+  flex: 1 0 auto;
+  align-self: flex-end;
+}
+
+.quote {
+  margin: 0;
+  span {
+    color: var(--primary-color);
+    font-size: 24px;
+  }
+}
+
+
+.input-focus {
+  opacity: 1;
+}
+
+.input-blur {
+  opacity: 0;
+}

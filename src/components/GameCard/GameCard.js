@@ -7,6 +7,7 @@ import holdsport from 'utils/holdsport';
 import card from '../../images/account-card-details.svg';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import config from '../../../mock-api/config.json';
+import styles from './GameCard.css';
 
 export default class GameCard extends Component {
   static propTypes = {
@@ -63,15 +64,18 @@ export default class GameCard extends Component {
     return (
       <div>
         <RaisedButton label="Kampkort" onTouchTap={this.handleOpen} />
-        <Dialog title="Kampkort"actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose}>
+        <Dialog title="Kampkort" actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent>
           {attending ?
             <div>
-              <div>Række: {config.dai.league}, Pulje: {config.dai.division}</div>
-              <div>Kamp nr. {this.parseGameNo()}</div>
-              <div>Navn<span><SvgIcon svg={card} /></span></div>
-              <div>
+              <div className={styles.gameInfo}>
+                <div>Række: <strong>{config.dai.league}</strong>, Pulje: <strong>{config.dai.division}</strong></div>
+                <div>Kamp nr. <strong>{this.parseGameNo()}</strong></div>
+              </div>
+
+              <div className={styles.players}>
+                <div className={styles.header}><p>Spiller</p><span><SvgIcon svg={card} /></span></div>
                 {attending.map((player, index) =>
-                  <p key={index}>{player.firstname} {player.lastname}<span>{player.member_number}</span></p>
+                  <div key={index}><p>{player.firstname} {player.lastname}</p><p>{player.member_number}</p></div>
                 )}
               </div>
             </div>

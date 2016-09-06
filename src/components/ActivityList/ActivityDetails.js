@@ -13,6 +13,10 @@ import Comment from 'components/Comment/Comment';
 import Rsvps from 'components/Rsvps/Rsvps';
 import GameCard from 'components/GameCard/GameCard';
 import {getAllEmails} from '../../utils/utils';
+import {Card, CardText, CardHeader} from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
+import StaticMap from 'components/StaticMap/StaticMap';
 
 export default class ActivityDetails extends Component {
   static propTypes = {
@@ -32,9 +36,11 @@ export default class ActivityDetails extends Component {
   getActivity() {
     const {eventId} = this.props;
     this.setState({fetching: true});
-    holdsport.get(`activities/${eventId}`).then((response) => {
+    const promise = holdsport.get(`activities/${eventId}`).then((response) => {
       this.setState({activity: response, status: response.status, fetching: false});
     });
+
+    console.log(promise);
   }
 
   getAttendingPlayers() {
@@ -72,47 +78,60 @@ export default class ActivityDetails extends Component {
 
     return (
       <div>
-        {this.state.activity ?
-          <div>
-            <H1>{activity.name}</H1>
+        <H1>{activity.name}</H1>
+        <div>
+          {this.state.activity ?
+            <div>
 
-            <div className={styles.forecast}>
-              <Forecast date={activity.starttime} />
-            </div>
+              <Card className={styles.card}>
+                <StaticMap address={activity.place} />
+                <CardText>
+                  <div className={styles.info}>
+                    <SvgIcon svg={location} />
+                    <span>{activity.place}</span>
+                  </div>
 
-            <Status status={this.state.status} disabled={this.state.fetching} className={styles.status} onClick={this.changeStatus} />
+                  <div className={styles.info}>
+                    <SvgIcon svg={calendar} />
+                    <span>{convertedDate} {time}</span>
+                  </div>
+                </CardText>
+              </Card>
 
-            <div className={styles.wrapper}>
-              <div className={styles.info}>
-                <SvgIcon svg={location} />
-                <span>{activity.place}</span>
+              <Card className={styles.card}>
+                <CardText>
+                  <Status status={this.state.status} disabled={this.state.fetching} className={styles.status} onClick={this.changeStatus} />
+                </CardText>
+                <Divider />
+                <CardHeader title="Spiller status" actAsExpander showExpandableButton />
+                <CardText expandable>
+                  <Rsvps activityUsers={activity.activities_users} />
+                </CardText>
+              </Card>
+
+              <Card className={styles.card}>
+                <CardHeader title="Kommentarer" />
+                <CardText>
+                  <Comment activity={activity} />
+                </CardText>
+              </Card>
+
+
+              <div className={styles.actions}>
+                <span>
+                  <GameCard attending={this.getAttendingPlayers()} starttime={activity.starttime} comment={activity.comment} />
+                </span>
+
+                <span>
+                  <RaisedButton label="Kampindkaldelse" />
+                </span>
               </div>
 
-              <div className={styles.info}>
-                <SvgIcon svg={calendar} />
-                <span>{convertedDate} {time}</span>
-              </div>
-            </div>
 
-            <div>
-              <Comment activity={activity} />
             </div>
-
-            <div>
-              <Rsvps activityUsers={activity.activities_users} />
-            </div>
-
-            <div>
-              <GameCard attending={this.getAttendingPlayers()} starttime={activity.starttime} comment={activity.comment} />
-            </div>
-
-            <div>
-              {/* <a href={`mailto:${getAllEmails(this.state.activity.activities_users)}`}>Kampindkaldelse</a> */}
-              <a href="#">Kampindkaldelse</a>
-            </div>
-          </div>
-          : null
-        }
+            : null
+          }
+        </div>
       </div>
     );
   }

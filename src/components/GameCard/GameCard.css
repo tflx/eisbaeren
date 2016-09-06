@@ -1,0 +1,24 @@
+@import 'global/variables.css';
+
+.game-info {
+  margin-top: var(--gutter);
+}
+
+.header {
+  color: var(--black);
+  border-bottom: 1px solid var(--black);
+  margin-bottom: var(--gutter);
+}
+
+.players {
+  margin-top: var(--gutter);
+  font-size: 13px;
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+}

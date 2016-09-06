@@ -1,27 +1,29 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import * as date from 'utils/date';
+import styles from './Rsvps.css';
+import Collapse from 'react-collapse';
+import Subheader from 'material-ui/Subheader';
+import RaisedButton from 'material-ui/RaisedButton';
+import arrow from '../../images/arrow-down.svg';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
+import Divider from 'components/Divider';
 
-function Rsvps({...props}) {
-  const {activityUsers} = props;
-  const attends = [];
-  const noAttend = [];
-  const noRsvp = [];
+export default class Rsvps extends Component {
+  static propTypes = {
+    activityUsers: PropTypes.array
+  };
 
-  for (const user of activityUsers) {
-    switch (user.status_code) {
-      case 1: attends.push(user);
-        break;
-      case 2: noAttend.push(user);
-        break;
-      case 0: noRsvp.push(user);
-        break;
-      default:
-        break;
-    }
+  state = {
+    isOpened: false
   }
 
-  function renderList(list) {
+
+  toggleAccordion = () => {
+    this.setState({isOpened: !this.state.isOpened});
+  }
+
+  renderList(list) {
     const users = [];
     users.push(list.map((user, index) => {
       const d = date.parseDate(user.updated_at);
@@ -30,27 +32,55 @@ function Rsvps({...props}) {
     return users;
   }
 
-  return (
-    <div>
-      <Tabs>
-        <Tab label="Tilmeldt">
-          {attends.length ? <ul> {renderList(attends)} </ul> : null}
-        </Tab>
 
-        <Tab label="Afmeldt">
-          {noAttend.length ? <ul> {renderList(noAttend)} </ul> : null}
-        </Tab>
+  render() {
+    const {activityUsers} = this.props;
+    const attends = [];
+    const noAttend = [];
+    const noRsvp = [];
 
-        <Tab label="Mangler">
-          {noRsvp.length ? <ul> {renderList(noRsvp)} </ul> : null}
-        </Tab>
-      </Tabs>
-    </div>
-  );
+    for (const user of activityUsers) {
+      switch (user.status_code) {
+        case 1: attends.push(user);
+          break;
+        case 2: noAttend.push(user);
+          break;
+        case 0: noRsvp.push(user);
+          break;
+        default:
+          break;
+      }
+    }
+
+    const tabStyle = {
+      backgroundColor: 'lightgrey',
+      color: 'black',
+      fontSize: '12px'
+    };
+
+    const buttonStyle = {
+      boxShadow: '0'
+    };
+
+    return (
+      <div>
+        {/* <RaisedButton style={buttonStyle} fullWidth onClick={this.toggleAccordion} label="Spiller status" labelPosition="before" icon={<SvgIcon className={this.state.isOpened ? styles.accordionToggleUp : styles.accordionToggle} svg={arrow} />} /> */}
+        <div>
+          <Tabs>
+            <Tab style={tabStyle} label={`Tilmeldt (${attends.length})`}>
+              {attends.length ? <ul className={styles.list}> {this.renderList(attends)} </ul> : null}
+            </Tab>
+
+            <Tab style={tabStyle} label={`Afmeldt (${noAttend.length})`}>
+              {noAttend.length ? <ul className={styles.list}> {this.renderList(noAttend)} </ul> : null}
+            </Tab>
+
+            <Tab style={tabStyle} label={`Mangler (${noRsvp.length})`}>
+              {noRsvp.length ? <ul className={styles.list}> {this.renderList(noRsvp)} </ul> : null}
+            </Tab>
+          </Tabs>
+        </div>
+      </div>
+    );
+  }
 }
-
-Rsvps.propTypes = {
-  activityUsers: PropTypes.array
-};
-
-export default Rsvps;
