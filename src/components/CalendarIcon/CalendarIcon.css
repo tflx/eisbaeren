@@ -1,0 +1,40 @@
+@import 'global/variables.css';
+
+.calendar-icon {
+  position: absolute;
+  z-index: 0;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+}
+
+
+.date-text {
+  position: relative;
+  z-index: 1;
+  width: 67px;
+  text-align: center;
+}
+
+.calendar-text {
+  margin: 0;
+}
+
+.month {
+  composes: calendar-text;
+  color: white;
+  font-size: 12px;
+  padding: 4px;
+}
+
+.date {
+  composes: calendar-text;
+  color: var(--black);
+  font-size: 20px;
+  padding-top: 4px;
+}
+
+.day {
+  composes: calendar-text;
+  color: var(--primary-color);
+  font-size: 12px;
+}

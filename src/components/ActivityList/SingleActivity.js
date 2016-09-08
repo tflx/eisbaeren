@@ -8,9 +8,13 @@ import SvgIcon from 'components/SvgIcon/SvgIcon';
 import styles from './SingleActivity.css';
 import Loader from 'components/Loader';
 import Status from 'components/Status/Status';
-import DateString from 'components/DateString';
-import calIcon from '../../images/calendar-icon.svg';
+import location from '../../images/map-marker.svg';
+import whistle from '../../images/whistle.svg';
+import clock from '../../images/clock.svg';
+import soccer from '../../images/soccer.svg';
+import star from '../../images/star-circle.svg';
 import * as dateUtil from 'utils/date';
+import CalendarIcon from 'components/CalendarIcon';
 
 export default class SingleActivity extends Component {
   static propTypes = {
@@ -25,11 +29,6 @@ export default class SingleActivity extends Component {
   componentWillMount() {
     const {status} = this.props.activity;
     this.setState({status});
-  }
-
-  getStatusIcon() {
-    const node = <span className={styles.infoIcon} />;
-    return node;
   }
 
   changeStatus = (newStatus) => {
@@ -61,53 +60,61 @@ export default class SingleActivity extends Component {
       (user.status_code === 1 ? currentAttendees++ : null)
     );
     const disabled = activity.max_attendees === currentAttendees;
-
     const date = dateUtil.parseDate(activity.starttime);
-    console.log(date);
 
     const cardStyle = {
       paddingBottom: 0,
     };
 
     const loaderStyle = {
-      width: '32px',
+      width: '72px',
       height: '32px',
-      left: '-16px',
+      left: '10px',
       top: '-7px'
     };
+
+    const activityIcon = activity.event_type_id === 1 ? soccer : star;
 
     return (
       <Card containerStyle={cardStyle}>
         <CardText>
           <div>
 
-            <div>
-              <div className={styles.info}>
-                <span>
-                  <SvgIcon className={styles.calendar} svg={calIcon} />
-                  <div className={styles.dateText}>
-                    <p className={styles.month}>{date.monthName}</p>
-                    <p className={styles.date}>{date.date}</p>
-                    <p className={styles.day}>{date.weekday}</p>
-                  </div>
-                </span>
-                <span className={styles.infoText}>{activity.name}</span>
-              </div>
-              <div className={styles.subInfo}>
+            <div className={styles.wrap}>
 
-              </div>
-              <div className={styles.subInfo}>
-                <span className={styles.infoText}>{activity.place}</span>
-              </div>
+              <CalendarIcon month={date.monthName} weekday={date.weekday} date={date.date} />
+
+              <span className={styles.infoText}>
+                <p>
+                  <SvgIcon width="18px" svg={activityIcon} />
+                  <span>{activity.name}</span>
+                </p>
+                <p>
+                  <SvgIcon width="18px" svg={location} />
+                  <span>{activity.place}</span>
+                </p>
+                <p>
+                  <SvgIcon width="18px" svg={clock} />
+                  <span>{date.time}</span>
+                </p>
+                <p>
+                  <SvgIcon width="18px" svg={whistle} />
+                  <span>{date.kickoff}</span>
+                </p>
+              </span>
+
             </div>
 
             <div className={styles.actions}>
-              {this.state.fetching ? <Loader size={0.3} className={styles.infoIcon} style={loaderStyle} /> : this.getStatusIcon()}
+              <span className={styles.fetchingSpace}>
+                {this.state.fetching ? <Loader size={0.3} style={loaderStyle} /> : null}
+              </span>
               <Status status={this.state.status} disabled={disabled || this.state.fetching} className={styles.status} onClick={this.changeStatus} />
               <span className={styles.details}>
                 <IconButton onClick={this.showDetails} icon={<SvgIcon width="24px" svg={arrow} />} />
               </span>
             </div>
+
           </div>
         </CardText>
       </Card>

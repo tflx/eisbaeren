@@ -1,35 +1,33 @@
 @import 'global/variables.css';
 
-.info {
+.wrap {
   display: flex;
-  font-size: 16px;
-  align-items: center;
-}
-
-.sub-info {
-  composes: info;
   color: rgba(0, 0, 0, 0.541176);
   font-size: 14px;
+
 }
+
 
 .info-text {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  flex: 1 1 auto;
-  width: 100%;
+  margin-left: 10px;
+
+  span {
+    margin-left: 10px;
+  }
+
+  p {
+    margin: 0;
+    display: flex;
+  }
 }
 
+.fetching-space {
+  width: 67px;
+}
 
 .actions {
-  composes: info;
-  margin-top: 10px;
-}
-
-.info-icon {
-  flex: 0 0 auto;
-  width: 22px;
-  margin-right: 10px;
+  composes: wrap;
+  margin-top: 20px;
 }
 
 .status {
@@ -38,44 +36,4 @@
 
 .details {
   flex: 0 1 auto;
-}
-
-.calendar {
-  position: absolute;
-  z-index: 0;
-  border: 1px solid #d3d3d3;
-  border-radius: 4px;
-}
-
-
-.date-text {
-  position: relative;
-  z-index: 1;
-  width: 67px;
-  text-align: center;
-}
-
-.calendar-text {
-  margin: 0;
-}
-
-.month {
-  composes: calendar-text;
-  color: white;
-  font-size: 12px;
-  padding: 4px;
-}
-
-.date {
-  composes: calendar-text;
-  color: var(--black);
-  font-size: 20px;
-  margin: 0;
-  padding-top: 4px;
-}
-
-.day {
-  composes: calendar-text;
-  color: var(--primary-color);
-  font-size: 12px;
 }
