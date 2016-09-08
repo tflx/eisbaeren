@@ -26,7 +26,9 @@
   },
   "colors": {
     "primary": "#f80015",
-    "secondary": "#3b18f1"
+    "secondary": "#3b18f1",
+    "grey": "#777777",
+    "lightgrey": "#d3d3d3"
   },
   "nav": [
   	{

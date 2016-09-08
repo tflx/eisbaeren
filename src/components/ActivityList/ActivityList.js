@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import holdsport from '../../utils/holdsport';
 import SingleActivity from './SingleActivity';
 import H1 from 'components/H1';
-import styles from './Activities.css';
+import styles from './ActivityList.css';
 import Loader from 'components/Loader';
 
 export default class ActivityList extends Component {

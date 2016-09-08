@@ -2,9 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import holdsport from 'utils/holdsport';
-import * as date from 'utils/date';
 import styles from './Comments.css';
-import Subheader from 'material-ui/Subheader';
+import DateString from 'components/DateString';
 
 export default class Comment extends Component {
   static propTypes = {
@@ -46,18 +45,14 @@ export default class Comment extends Component {
 
     const list = [];
 
-    list.push(comments.map((item, index) => {
-      const parsedDate = date.parseDate(item.created_at);
-      return (
-        <li key={index}>
-          <div className={styles.commentHeader}>
-            <span className={styles.commentName}>{item.name}</span>
-            <span className={styles.commentDate}>({parsedDate.convertedDate} - {parsedDate.time})</span>
-          </div>
-          <p className={styles.quote}><span>”</span>{item.comment}</p>
-        </li>
-      );
-    }
+    list.push(comments.map((item, index) =>
+      <li key={index}>
+        <div className={styles.commentHeader}>
+          <span className={styles.commentName}>{item.name}</span>
+          <span className={styles.commentDate}><DateString date={item.created_at} parenthesis={false} /></span>
+        </div>
+        <p className={styles.quote}><span>”</span>{item.comment}</p>
+      </li>
     ));
     return list;
   }

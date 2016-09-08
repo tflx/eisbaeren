@@ -4,26 +4,30 @@
   list-style: none;
 
   li {
-    margin-bottom: var(--gutter);
+    margin-bottom: calc(var(--gutter) * 2);
   }
 }
 
+
 .comment-header {
   display: flex;
+  color: var(--grey);
+  border-bottom: 1px solid var(--lightgrey);
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 
 .comment-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
 }
 
 .comment-date {
   color: var(--grey);
-  font-size: 12px;
   margin-left: 5px;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   align-self: flex-end;
 }
 
@@ -32,6 +36,7 @@
   span {
     color: var(--primary-color);
     font-size: 24px;
+    vertical-align: middle;
   }
 }
 

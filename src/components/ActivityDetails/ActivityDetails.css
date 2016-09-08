@@ -1,0 +1,42 @@
+@import 'global/variables.css';
+
+.headline {
+  font-size: 9vw;
+}
+
+.forecast {
+  width: 100px;
+}
+
+.card {
+  margin-bottom: var(--gutter);
+}
+
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  > span {
+    flex: 1 0 auto;
+  }
+}
+
+.header {
+  height: 100px;
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.info {
+  margin-top: 10px;
+  > span {
+    margin-left: 10px;
+  }
+}
+
+.activity-comment {
+  color: var(--grey);
+  line-height: 1.3em;
+}

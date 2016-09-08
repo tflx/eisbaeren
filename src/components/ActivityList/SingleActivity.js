@@ -2,16 +2,15 @@ import React, {Component, PropTypes} from 'react';
 import {push} from 'utils/holdsport';
 import {browserHistory} from 'react-router';
 import {Card, CardText} from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
-import soccer from '../../images/soccer.svg';
-import star from '../../images/star-circle.svg';
+import IconButton from 'components/IconButton';
 import arrow from '../../images/arrow-right.svg';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
-import * as dateUtil from '../../utils/date';
-import styles from './Activities.css';
+import styles from './SingleActivity.css';
 import Loader from 'components/Loader';
 import Status from 'components/Status/Status';
+import DateString from 'components/DateString';
+import calIcon from '../../images/calendar-icon.svg';
+import * as dateUtil from 'utils/date';
 
 export default class SingleActivity extends Component {
   static propTypes = {
@@ -57,18 +56,14 @@ export default class SingleActivity extends Component {
   render() {
     const {activity} = this.props;
     const showTime = activity.event_type_id === 1;
-    const {time, convertedDate, kickoff} = dateUtil.parseDate(activity.starttime, showTime);
-    const eventIcon = activity.event_type_id === 1 ? soccer : star;
+    let currentAttendees = 0;
+    activity.activities_users.map((user) =>
+      (user.status_code === 1 ? currentAttendees++ : null)
+    );
+    const disabled = activity.max_attendees === currentAttendees;
 
-
-    const iconStyle = {
-      width: '16px',
-      height: '16px',
-    };
-    const iconStyleBig = {
-      width: '22px',
-      height: '22px'
-    };
+    const date = dateUtil.parseDate(activity.starttime);
+    console.log(date);
 
     const cardStyle = {
       paddingBottom: 0,
@@ -81,21 +76,6 @@ export default class SingleActivity extends Component {
       top: '-7px'
     };
 
-    const detailsButtonStyle = {
-      border: '1px solid lightgrey',
-      boxShadow: 'none',
-      borderRadius: '50%',
-      width: '40px',
-      height: '40px',
-      padding: '0',
-    };
-
-    const arrowButtonStyle = {
-      width: '46px',
-      height: '46px',
-    };
-
-
     return (
       <Card containerStyle={cardStyle}>
         <CardText>
@@ -103,26 +83,29 @@ export default class SingleActivity extends Component {
 
             <div>
               <div className={styles.info}>
-                {/* <SvgIcon svg={eventIcon} style={iconStyleBig} className={styles.infoIcon} />*/}
+                <span>
+                  <SvgIcon className={styles.calendar} svg={calIcon} />
+                  <div className={styles.dateText}>
+                    <p className={styles.month}>{date.monthName}</p>
+                    <p className={styles.date}>{date.date}</p>
+                    <p className={styles.day}>{date.weekday}</p>
+                  </div>
+                </span>
                 <span className={styles.infoText}>{activity.name}</span>
               </div>
               <div className={styles.subInfo}>
-                {/* <span style={iconStyle} className={styles.infoIcon} />*/}
-                <span className={styles.infoText}>{`${convertedDate} - ${time} (${kickoff})`}</span>
+
               </div>
               <div className={styles.subInfo}>
-                {/* <span style={iconStyle} className={styles.infoIcon} />*/}
                 <span className={styles.infoText}>{activity.place}</span>
               </div>
             </div>
 
             <div className={styles.actions}>
               {this.state.fetching ? <Loader size={0.3} className={styles.infoIcon} style={loaderStyle} /> : this.getStatusIcon()}
-              <Status status={this.state.status} disabled={this.state.fetching} className={styles.status} onClick={this.changeStatus} />
+              <Status status={this.state.status} disabled={disabled || this.state.fetching} className={styles.status} onClick={this.changeStatus} />
               <span className={styles.details}>
-                <IconButton onClick={this.showDetails} style={detailsButtonStyle}>
-                  <SvgIcon svg={arrow} width="24px" />
-                </IconButton>
+                <IconButton onClick={this.showDetails} icon={<SvgIcon width="24px" svg={arrow} />} />
               </span>
             </div>
           </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
 import holdsport from 'utils/holdsport';
 import {getUser} from 'utils/user';
 import Loader from 'components/Loader';
@@ -9,6 +8,7 @@ import H1 from 'components/H1';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import styles from './PlayerList.css';
 import Player from './Player';
+import playerList from '../../utils/playerlist';
 
 export default class Players extends Component {
 
@@ -24,12 +24,15 @@ export default class Players extends Component {
 
   getPlayerList() {
     this.setState({fetching: true});
+    if (playerList.getPlayers()) {
+      this.updateList(playerList.getPlayers());
+      this.setState({fetching: false});
+      return;
+    }
+
     holdsport.get('members').then((response) => {
-      this.setState({
-        players: response,
-        filtered: response,
-        fetching: false
-      });
+      this.updateList(response);
+      playerList.savePlayers(response);
     });
   }
 
@@ -41,6 +44,14 @@ export default class Players extends Component {
       (myEmail !== player.addresses[0].email ? player.addresses[0].email : null)
     ));
     return emails;
+  }
+
+  updateList(response) {
+    this.setState({
+      players: response,
+      filtered: response,
+      fetching: false
+    });
   }
 
   filterList = () => {

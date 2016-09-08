@@ -17,3 +17,19 @@
   list-style: none;
   padding: calc(var(--gutter) / 2);
 }
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+
+  span:first-child {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.list-item-red {
+  composes: list-item;
+  color: var(--primary-color);
+}

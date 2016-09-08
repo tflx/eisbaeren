@@ -52,7 +52,7 @@ export default class ProfileView extends Component {
           : <Profile user={user} onEdit={this.onEdit} />
         */}
         <Profile user={user} />
-        <RaisedButton labelColor="white" backgroundColor={config.colors.primary} label="Log ud" fullWidth onClick={this.onLogout} />
+        <RaisedButton secondary label="Log ud" fullWidth onClick={this.onLogout} />
       </div>
     );
   }

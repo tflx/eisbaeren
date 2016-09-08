@@ -16,7 +16,7 @@ export default class StaticMap extends Component {
     // const apiKey = config.google.apikey;
     // scriptLoader.load(`https://maps.googleapis.com/maps/api/js${apiKey ? `?key=${apiKey}` : ''}`)
     //   .then(() => this.geocodeAddress());
-    this.renderMap();
+    // this.renderMap();
   }
 
   /*
@@ -38,8 +38,11 @@ export default class StaticMap extends Component {
     });
   }*/
 
-  renderMap(lat, lng) {
+  renderMap() {
     // const addr = `${lat},${lng}`;
+  }
+
+  render() {
     const parsedAddress = this.props.address.toLowerCase().replace(/ /g, '+');
     let addr = '';
     switch (parsedAddress) {
@@ -55,20 +58,17 @@ export default class StaticMap extends Component {
         addr = parsedAddress;
     }
 
+    const scale = window.devicePixelRatio;
     const width = window.innerWidth - 40;
     const height = 150;
     // const map = `https://maps.googleapis.com/maps/api/staticmap?center=`Brooklyn+Bridge,New+York,NY`&zoom=13&size=600x300&maptype=roadmap`;
-    const map = `https://maps.googleapis.com/maps/api/staticmap?center=${addr}&zoom=14&size=${width}x${height}&maptype=roadmap&key=${config.google.staticApi}`;
-    
+    const map = `https://maps.googleapis.com/maps/api/staticmap?center=${addr}&zoom=14&size=${width}x${height}&scale=${scale}&maptype=roadmap&key=${config.google.staticApi}`;
     const directions = `comgooglemaps://?daddr=${addr}&directionsmode=driving`;
-    
-    this.setState({map, directions});
-  }
+    // this.setState({map, directions});
 
-  render() {
     return (
       <div>
-        {this.state.map ? <a href={this.state.directions}><img alt="map" src={this.state.map} /></a> : null}
+        {map ? <a href={directions}><img width={width} height={height} alt="map" src={map} /></a> : null}
       </div>
     );
   }

@@ -29,20 +29,17 @@ export function getDay(day) {
 
 export function parseDate(eventDate, showTime = true) {
   const start = new Date(eventDate);
-  const kickoffTime = getKickOff(eventDate);
-  const date = {
-    weekday: this.getDay(start.getDay()),
-    day: start.getDate(),
-    month: start.getMonth() + 1,
-    meet: `${pad(start.getHours())}:${pad(start.getMinutes())}`,
-    kickoff: `${pad(kickoffTime.getHours())}:${pad(kickoffTime.getMinutes())}`
-  };
+  const parsedKickoff = getKickOff(eventDate);
+  const weekday = this.getDay(start.getDay());
+  const date = start.getDate();
+  const month = start.getMonth() + 1;
+  const meet = `${pad(start.getHours())}:${pad(start.getMinutes())}`;
+  const kickoff = showTime ? `${pad(parsedKickoff.getHours())}:${pad(parsedKickoff.getMinutes())}` : null;
+  const convertedDate = `${date}/${month}`;
+  const time = showTime ? meet : null;
+  const monthName = months[start.getMonth()];
 
-  const convertedDate = `${date.weekday} ${date.day}/${date.month}`;
-  const time = showTime ? date.meet : null;
-  const kickoff = showTime ? date.kickoff : null;
-
-  return {time, convertedDate, kickoff};
+  return {time, convertedDate, kickoff, weekday, month, monthName, date};
 }
 
 function pad(int) {

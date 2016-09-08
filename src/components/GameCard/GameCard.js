@@ -8,6 +8,8 @@ import card from '../../images/account-card-details.svg';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import config from '../../../mock-api/config.json';
 import styles from './GameCard.css';
+import playerList from '../../utils/playerlist';
+import DateString from 'components/DateString';
 
 export default class GameCard extends Component {
   static propTypes = {
@@ -21,33 +23,38 @@ export default class GameCard extends Component {
     attending: null
   };
 
+  getPlayers() {
+    if (playerList.getPlayers()) {
+      this.mapPlayers(playerList.getPlayers());
+    } else {
+      holdsport.get('members').then((response) => {
+        this.mapPlayers(response);
+      });
+    }
+  }
+
   handleOpen = () => {
     this.setState({open: true});
-    if (!this.state.attending) this.mapPlayers();
+    if (!this.state.attending) this.getPlayers();
   };
 
   handleClose = () => {
     this.setState({open: false});
   };
 
-  mapPlayers() {
+
+  mapPlayers(list) {
     const {attending} = this.props;
-    let players = [];
     const mapped = [];
 
-
-    holdsport.get('members').then((response) => {
-      players = response;
-
-      for (const attendingPlayer of attending) {
-        mapped.push(
-          players.find((player) => (
-            player.id === attendingPlayer.user_id)
-          )
-        );
-      }
-      this.setState({attending: mapped});
-    });
+    for (const attendingPlayer of attending) {
+      mapped.push(
+        list.find((player) => (
+          player.id === attendingPlayer.user_id)
+        )
+      );
+    }
+    this.setState({attending: mapped});
   }
 
   parseStarttime() {
@@ -63,13 +70,14 @@ export default class GameCard extends Component {
 
     return (
       <div>
-        <RaisedButton label="Kampkort" onTouchTap={this.handleOpen} />
+        <RaisedButton  label="Kampkort" onClick={this.handleOpen} />
         <Dialog title="Kampkort" actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent>
           {attending ?
             <div>
               <div className={styles.gameInfo}>
-                <div>Række: <strong>{config.dai.league}</strong>, Pulje: <strong>{config.dai.division}</strong></div>
-                <div>Kamp nr. <strong>{this.parseGameNo()}</strong></div>
+                <span>Dato: </span><DateString className={styles.highlight} size="16px"  kickoff date={this.props.starttime} parenthesis={false} />
+                <div>Række: <span className={styles.highlight}>{config.dai.league}</span>, Pulje: <span className={styles.highlight}>{config.dai.division}</span></div>
+                <div>Kamp nr. <span className={styles.highlight}>{this.parseGameNo()}</span></div>
               </div>
 
               <div className={styles.players}>

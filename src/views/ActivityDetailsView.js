@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import ActivityDetails from 'components/ActivityList/ActivityDetails';
+import ActivityDetails from 'components/ActivityDetails/ActivityDetails';
 
 function ActivityDetailsView({...props}) {
   return (
