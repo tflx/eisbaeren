@@ -10,6 +10,7 @@ import config from '../../../mock-api/config.json';
 import styles from './GameCard.css';
 import playerList from '../../utils/playerlist';
 import DateString from 'components/DateString';
+import * as dateUtil from 'utils/date';
 
 export default class GameCard extends Component {
   static propTypes = {
@@ -67,15 +68,16 @@ export default class GameCard extends Component {
   render() {
     const actions = [<FlatButton label="Luk"onTouchTap={this.handleClose} />];
     const attending = this.state.attending;
+    const kickoff = dateUtil.parseDate(this.props.starttime).kickoff;
 
     return (
       <div>
-        <RaisedButton  label="Kampkort" onClick={this.handleOpen} />
+        <RaisedButton label="Kampkort" onClick={this.handleOpen} />
         <Dialog title="Kampkort" actions={actions} modal={false} open={this.state.open} onRequestClose={this.handleClose} autoScrollBodyContent>
           {attending ?
             <div>
               <div className={styles.gameInfo}>
-                <span>Dato: </span><DateString className={styles.highlight} size="16px"  kickoff date={this.props.starttime} parenthesis={false} />
+                <span>Dato: </span><DateString className={styles.highlight} size="14px" time={false} date={this.props.starttime} parenthesis={false} /><span className={styles.highlight}> kl. {kickoff}</span>
                 <div>Række: <span className={styles.highlight}>{config.dai.league}</span>, Pulje: <span className={styles.highlight}>{config.dai.division}</span></div>
                 <div>Kamp nr. <span className={styles.highlight}>{this.parseGameNo()}</span></div>
               </div>

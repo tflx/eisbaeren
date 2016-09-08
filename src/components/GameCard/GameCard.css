@@ -2,6 +2,7 @@
 
 .game-info {
   margin-top: var(--gutter);
+  font-size: 14px;
 }
 
 .header {

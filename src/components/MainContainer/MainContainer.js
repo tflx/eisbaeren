@@ -5,7 +5,7 @@ import Navigation from 'components/Navigation/Navigation';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import config from '../../../mock-api/config.json';
-import {getLogin, deletUser} from '../../utils/user';
+import {getLogin, deleteUser} from '../../utils/user';
 
 
 export default class MainContainer extends Component {
@@ -28,7 +28,7 @@ export default class MainContainer extends Component {
   }
 
   onLogOut = () => {
-    deletUser();
+    deleteUser();
     this.setState({isLoggedIn: false});
     browserHistory.push('/');
   }
@@ -39,6 +39,7 @@ export default class MainContainer extends Component {
       palette: {
         primary1Color: config.colors.secondary,
         primary2Color: config.colors.primary,
+        accent1Color: config.colors.primary,
       }
     });
     const children = React.cloneElement(this.props.children, {onLoginSuccess: this.onLoginSuccess, onLogOut: this.onLogOut, isLoggedIn: this.state.isLoggedIn});

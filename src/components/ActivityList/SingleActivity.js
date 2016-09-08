@@ -55,6 +55,7 @@ export default class SingleActivity extends Component {
   render() {
     const {activity} = this.props;
     const showTime = activity.event_type_id === 1;
+    const showPlace = activity.place !== '';
     let currentAttendees = 0;
     activity.activities_users.map((user) =>
       (user.status_code === 1 ? currentAttendees++ : null)
@@ -89,18 +90,26 @@ export default class SingleActivity extends Component {
                   <SvgIcon width="18px" svg={activityIcon} />
                   <span>{activity.name}</span>
                 </p>
-                <p>
-                  <SvgIcon width="18px" svg={location} />
-                  <span>{activity.place}</span>
-                </p>
-                <p>
-                  <SvgIcon width="18px" svg={clock} />
-                  <span>{date.time}</span>
-                </p>
-                <p>
-                  <SvgIcon width="18px" svg={whistle} />
-                  <span>{date.kickoff}</span>
-                </p>
+                {showPlace ?
+                  <p>
+                    <SvgIcon width="18px" svg={location} />
+                    <span>{activity.place}</span>
+                  </p>
+                  : null
+                }
+                {showTime ?
+                  <div>
+                    <p>
+                      <SvgIcon width="18px" svg={clock} />
+                      <span>{date.time}</span>
+                    </p>
+                    <p>
+                      <SvgIcon width="18px" svg={whistle} />
+                      <span>{date.kickoff}</span>
+                    </p>
+                  </div>
+                  : null
+                }
               </span>
 
             </div>
