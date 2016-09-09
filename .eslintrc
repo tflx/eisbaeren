@@ -7,6 +7,15 @@
   "settings": {
     "import/resolver": "webpack"
   },
+  "globals": {
+    "Modernizr": false,
+    "TimelineLite": false,
+    "TimelineMax": false,
+    "TweenLite": false,
+    "TweenMax": false,
+    "Power2": false,
+    "Linear": false
+  },
   "rules": {
     "comma-dangle": 0,
     "eol-last": 0,

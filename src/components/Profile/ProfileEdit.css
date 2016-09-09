@@ -3,3 +3,36 @@
 .profile {
   margin-bottom: var(--gutter);
 }
+
+.header {
+  background-color: var(--primary-color);
+  padding: var(--gutter);
+}
+
+.info {
+  color: var(--grey);
+  display: flex;
+  flex-direction: column;
+
+  > span {
+    margin-top: 10px;
+  }
+}
+
+.avatar {
+  border: 2px solid white;
+}
+
+.username {
+  color: var(--white);
+  font-size: 20px;
+  margin-left: var(--gutter);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+span.zip-city {
+  padding-left: 34px;
+  margin-top: 0;
+}

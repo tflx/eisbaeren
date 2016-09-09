@@ -9,6 +9,7 @@ export default class NavItem extends Component {
     label: PropTypes.string
   }
 
+
   render() {
     return (
       <Link {...this.props} to={this.props.href} className={styles.navLink}>

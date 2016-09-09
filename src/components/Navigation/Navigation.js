@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
 import styles from './Navigation.css';
-import logo from 'static/logo.svg';
 import config from '../../../mock-api/config.json';
 import NavItem from './NavItem';
 import Float from './Float';
+import ReactTransitionGroup from 'react-addons-transition-group';
+import NavigationContainer from './NavigationContainer';
+import Logo from 'components/Logo';
 
 export default class Navigation extends Component {
   static propTypes = {
@@ -39,16 +40,19 @@ export default class Navigation extends Component {
     };
     const {isLoggedIn} = this.props;
 
+
     return (
       <div className={isLoggedIn ? styles.isLoggedIn : styles.isNotLoggedIn}>
         <Float onClick={this.toggleOpen} open={this.state.open} />
         <div className={styles.navLayer} style={open} />
         {this.state.open ?
           <div className={styles.navWrapper}>
-            <div className={styles.brand}>
-              <SvgIcon className={styles.logo} svg={logo} width="50px" />
-            </div>
-            <div>{this.renderList()}</div>
+            <ReactTransitionGroup>
+              <NavigationContainer>
+                <Logo />
+                {this.renderList()}
+              </NavigationContainer>
+            </ReactTransitionGroup>
           </div>
           : null
         }

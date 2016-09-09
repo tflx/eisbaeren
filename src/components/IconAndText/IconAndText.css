@@ -1,0 +1,17 @@
+@import 'global/variables.css';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  color: currentcolor;
+}
+
+.icon {
+  margin-right: calc(var(--gutter) / 2);
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

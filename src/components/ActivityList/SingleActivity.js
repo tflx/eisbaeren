@@ -102,10 +102,12 @@ export default class SingleActivity extends Component {
                     <p>
                       <SvgIcon width="18px" svg={clock} />
                       <span>{date.time}</span>
+                      <span>
+                        <SvgIcon width="18px" svg={whistle} />
+                        <span>{date.kickoff}</span>
+                      </span>
                     </p>
                     <p>
-                      <SvgIcon width="18px" svg={whistle} />
-                      <span>{date.kickoff}</span>
                     </p>
                   </div>
                   : null
