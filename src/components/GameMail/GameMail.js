@@ -44,7 +44,7 @@ export default class GameMail extends Component {
     const {name, place, starttime} = this.props;
     const mailto = this.state.addresses;
     const date = dateUtil.parseDate(starttime);
-    const dateString = `${date.day}/${date.convertedDate} kl.${date.time}, ${place}`;
+    const dateString = `${date.weekday}/${date.convertedDate} kl.${date.time}, ${place}`;
     const subject = `Kampindkaldelse - ${dateString}`;
 
     const newLine = '%0D%0A';

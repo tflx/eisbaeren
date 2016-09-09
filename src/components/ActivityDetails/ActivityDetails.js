@@ -33,7 +33,7 @@ export default class ActivityDetails extends Component {
     this.getActivity();
   }
 
-  getActivity() {
+  getActivity = () => {
     const {eventId} = this.props;
     this.setState({fetching: true});
     holdsport.get(`activities/${eventId}`).then((response) => {
@@ -66,7 +66,7 @@ export default class ActivityDetails extends Component {
   render() {
     const activity = this.state.activity;
 
-    if (!activity) {
+    if (!activity || this.state.fetching) {
       return (<Loader centered />);
     }
 
@@ -111,7 +111,7 @@ export default class ActivityDetails extends Component {
 
               <Card className={styles.card} >
                 <CardText>
-                  <Status status={this.state.status} disabled={this.state.fetching} className={styles.status} onClick={this.changeStatus} />
+                  <Status reloadActivity={this.getActivity} status={this.state.status} disabled={this.state.fetching} className={styles.status} onClick={this.changeStatus} />
                 </CardText>
                 <Divider />
                 <CardHeader title="Tilmeldingsstatus" actAsExpander showExpandableButton />
@@ -123,7 +123,7 @@ export default class ActivityDetails extends Component {
               <Card className={styles.card} initiallyExpanded >
                 <CardHeader title="Kommentarer" actAsExpander showExpandableButton />
                 <CardText expandable>
-                  <Comment activity={activity} />
+                  <Comment reloadActivity={this.getActivity} activity={activity} />
                 </CardText>
               </Card>
 

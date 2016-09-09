@@ -7,11 +7,11 @@ import DateString from 'components/DateString';
 
 export default class Comment extends Component {
   static propTypes = {
-    activity: PropTypes.object
+    activity: PropTypes.object,
+    reloadActivity: PropTypes.func,
   }
 
   state = {
-    fetching: false,
     inputFocus: false,
     newComment: ''
   };
@@ -22,7 +22,9 @@ export default class Comment extends Component {
   }
 
   onInputFocusOut = () => {
-    this.setState({inputFocus: false});
+    setTimeout(() =>
+      this.setState({inputFocus: false}), 100
+    );
   }
 
   onCommentInput = () => {
@@ -32,10 +34,16 @@ export default class Comment extends Component {
 
   saveComment = () => {
     const path = `/v1/activities/${this.props.activity.id}/comments`;
-    const data = this.refs.comment.getValue();
+    const data = {comment: {body: this.state.newComment}};
+    console.log(data);
     return;
     holdsport.push(path, data, 'PUSH')
-    .then((response => console.log(response)));
+      .then((response => {
+        console.log(response);
+        this.setState({newComment: ''});
+        this.props.reloadActivity();
+      }
+    ));
   }
 
 
@@ -81,6 +89,7 @@ export default class Comment extends Component {
           rows={1}
           underlineShow
           fullWidth
+          value={this.state.newComment}
         />
         <RaisedButton
           disabled={!this.state.inputFocus || this.state.newComment === ''}

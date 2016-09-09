@@ -1,8 +1,9 @@
 import React from 'react';
+import PostListContainer from 'components/Contentful/PostListContainer';
 
 function InfoView() {
   return (
-    <div />
+    <PostListContainer />
   );
 }
 

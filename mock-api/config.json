@@ -20,9 +20,11 @@
     "staticApi": "AIzaSyBoy2CYfNCIyURZntONP_cK0k6wtP2JOGI"
   },
   "contentful": {
+    "api": "https://cdn.contentful.com/",
     "productionApi": "a8300521622c773ceaf048ada58d64f596cb75c374a58f1ffd6c993a3ad49bd3",
     "previewApi": "05ed0a067b70401595f00fd63e425a80aa9d87a6d95cf88838d29d7406373e2e",
-    "spaceId": "7v080ny1p4pz"
+    "spaceId": "7v080ny1p4pz",
+    "posts": "2wKn6yEnZewu2SCCkus4as"
   },
   "colors": {
     "primary": "#f80015",
