@@ -7,6 +7,7 @@ import config from '../../../mock-api/config.json';
 export default class Rsvps extends Component {
   static propTypes = {
     activityUsers: PropTypes.array,
+    noRsvp: PropTypes.array,
     date: PropTypes.string,
   };
 
@@ -31,7 +32,7 @@ export default class Rsvps extends Component {
 
     users.push(list.map((user, index) => {
       const dateString = showDate ? <span><DateString date={user.updated_at} time={false} day={false} /></span> : null;
-      const rsvpOK = this.getRsvpOK(user.updated_at);
+      const rsvpOK = showDate ? this.getRsvpOK(user.updated_at) : true;
 
       return (
         <li key={index} className={rsvpOK ? styles.listItem : styles.listItemRed}>
@@ -55,11 +56,15 @@ export default class Rsvps extends Component {
           break;
         case 2: noAttend.push(user);
           break;
-        case 5: noRsvp.push(user);
-          break;
+        // case 5: noRsvp.push(user);
+        //   break;
         default:
           break;
       }
+    }
+
+    for (const norsvpUser of this.props.noRsvp) {
+      noRsvp.push(norsvpUser);
     }
 
     attends.sort((a, b) => a.updated_at > b.updated_at);

@@ -56,6 +56,8 @@ export default class ActivityDetails extends Component {
 
     const showTime = activity.event_type_id === 1;
 
+    const info = {__html: activity.comment.replace(/\n\n/g, '<br>')};
+
     const headerStyle = {
       paddingBottom: '0px'
     };
@@ -85,7 +87,7 @@ export default class ActivityDetails extends Component {
 
                 </CardText>
                 <CardText expandable>
-                  <p className={styles.activityComment}>{activity.comment}</p>
+                  <p className={styles.activityComment} dangerouslySetInnerHTML={info}></p>
                 </CardText>
                 <CardText className={styles.actions} >
                   <GameCard attending={this.getAttendingPlayers()} starttime={activity.starttime} comment={activity.comment} />
@@ -100,7 +102,7 @@ export default class ActivityDetails extends Component {
                 <Divider />
                 <CardHeader title="Tilmeldingsstatus" actAsExpander showExpandableButton />
                 <CardText expandable>
-                  <Rsvps activityUsers={activity.activities_users} date={activity.starttime} />
+                  <Rsvps activityUsers={activity.activities_users} noRsvp={activity.no_rsvp} date={activity.starttime} />
                 </CardText>
               </Card>
 
