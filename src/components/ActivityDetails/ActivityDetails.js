@@ -47,22 +47,6 @@ export default class ActivityDetails extends Component {
     );
   }
 
-  changeStatus = (newStatus) => {
-    this.setState({fetching: true});
-    const data = {
-      activities_user: {
-        joined_status: newStatus,
-        picked: 1
-      }
-    };
-
-    const {action_method, action_path} = this.state.activity;
-    holdsport.push(action_path, data, action_method)
-      .then((response) =>
-        this.setState({status: response.status_code, fetching: false})
-      );
-  }
-
   render() {
     const activity = this.state.activity;
 
@@ -111,7 +95,7 @@ export default class ActivityDetails extends Component {
 
               <Card className={styles.card} >
                 <CardText>
-                  <Status reloadActivity={this.getActivity} status={this.state.status} disabled={this.state.fetching} className={styles.status} onClick={this.changeStatus} />
+                  <Status reloadActivity={this.getActivity} status={this.state.status} disabled={this.state.fetching} actionMethod={activity.action_method} actionPath={activity.action_path} className={styles.status} />
                 </CardText>
                 <Divider />
                 <CardHeader title="Tilmeldingsstatus" actAsExpander showExpandableButton />

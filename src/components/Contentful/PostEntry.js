@@ -7,9 +7,6 @@ function PostEntry({...props}) {
   return (
     <Card>
       <CardHeader title={title} />
-      <CardActions>
-
-      </CardActions>
     </Card>
   );
 }

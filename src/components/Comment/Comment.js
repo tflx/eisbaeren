@@ -35,8 +35,6 @@ export default class Comment extends Component {
   saveComment = () => {
     const path = `/v1/activities/${this.props.activity.id}/comments`;
     const data = {comment: {body: this.state.newComment}};
-    console.log(data);
-    return;
     holdsport.push(path, data, 'PUSH')
       .then((response => {
         console.log(response);

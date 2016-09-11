@@ -9,7 +9,6 @@ export default class Status extends Component {
   static propTypes = {
     className: PropTypes.string,
     status: PropTypes.number,
-    onClick: PropTypes.func,
     disabled: PropTypes.bool,
     actionMethod: PropTypes.string,
     actionPath: PropTypes.string,
