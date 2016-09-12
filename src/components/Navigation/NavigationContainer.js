@@ -18,12 +18,12 @@ export default class NavigationContainer extends Component {
       scale: 0.8,
       x: '-10',
       y: '18',
-      delay: 0.15,
+      delay: 0,
     }, -0.03);
 
     TweenLite.from(logo, 0.6, {
       autoAlpha: 0,
-      delay: 0.5,
+      delay: 0.4,
       ease: Linear.easeNone,
       onComplete
     });
