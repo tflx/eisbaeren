@@ -27,6 +27,13 @@ export default class Rsvps extends Component {
   }
 
 
+  sortArray(array) {
+    array.sort((a, b) => {
+      if (new Date(a.updated_at).getTime() > new Date(b.updated_at).getTime()) return 1;
+      return -1;
+    });
+  }
+
   renderList(list, showDate = true) {
     const users = [];
 
@@ -42,7 +49,6 @@ export default class Rsvps extends Component {
     }));
     return users;
   }
-
 
   render() {
     const {activityUsers} = this.props;
@@ -67,8 +73,13 @@ export default class Rsvps extends Component {
       noRsvp.push(norsvpUser);
     }
 
-    attends.sort((a, b) => a.updated_at > b.updated_at);
-    noAttend.sort((a, b) => a.updated_at > b.updated_at);
+    console.log(attends);
+    console.log(noAttend);
+
+    // attends.sort((a, b) => new Date(a.updated_at).getTime() > new Date(b.updated_at).getTime());
+    // noAttend.sort((a, b) => new Date(a.updated_at).getTime() > new Date(b.updated_at).getTime());
+    this.sortArray(attends);
+    this.sortArray(noAttend);
 
     const tabStyle = {
       backgroundColor: config.colors.lightgrey,
