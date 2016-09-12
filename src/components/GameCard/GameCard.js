@@ -29,7 +29,8 @@ export default class GameCard extends Component {
       this.mapPlayers(playerList.getPlayers());
     } else {
       holdsport.get('members').then((response) => {
-        this.mapPlayers(response);
+        playerList.savePlayers(response);
+        this.mapPlayers(playerList.getPlayers());
       });
     }
   }

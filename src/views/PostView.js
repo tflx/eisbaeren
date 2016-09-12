@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react';
-import Post from 'components/Contentful/Post';
+import PostContainer from 'components/Contentful/PostContainer';
 
 function PostView({...props}) {
   return (
-    <Post postId={props.params.postId} />
+    <PostContainer postId={props.params.postId} />
   );
 }
 

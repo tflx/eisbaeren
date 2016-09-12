@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import holdsport from 'utils/holdsport';
-import {getUser} from 'utils/user';
+import utils from 'utils/utils';
 import Loader from 'components/Loader';
 import search from '../../images/magnify.svg';
 import H1 from 'components/H1';
@@ -25,25 +25,21 @@ export default class Players extends Component {
   getPlayerList() {
     this.setState({fetching: true});
     if (playerList.getPlayers()) {
-      this.updateList(playerList.getPlayers());
+      this.updateList(playerList.getPlayers(true));
       this.setState({fetching: false});
       return;
     }
 
     holdsport.get('members').then((response) => {
-      this.updateList(response);
       playerList.savePlayers(response);
+      this.updateList(playerList.getPlayers(true));
+      this.setState({fetching: false});
     });
   }
 
 
   getAllEmails() {
-    let emails = '';
-    const myEmail = getUser().addresses[0].email;
-    emails = emails.concat(this.state.players.map((player) =>
-      (myEmail !== player.addresses[0].email ? player.addresses[0].email : null)
-    ));
-    return emails;
+    return utils.getAllEmails(playerList.getPlayers(true));
   }
 
   updateList(response) {

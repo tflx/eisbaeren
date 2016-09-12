@@ -4,8 +4,10 @@
   margin: var(--gutter) 0;
 }
 
-.error {
-  font-size: 14px;
-  color: var(--color-error);
-  margin: 0;
+.wrapper {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
 }

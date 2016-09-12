@@ -21,12 +21,12 @@ export default class GameMail extends Component {
   componentWillMount() {
     let players = null;
     if (playerList.getPlayers()) {
-      players = playerList.getPlayers();
+      players = playerList.getPlayers(true);
       this.setState({addresses: utils.getAllEmails(players)});
     } else {
       holdsport.get('members').then((response) => {
-        players = response;
         playerList.savePlayers(response);
+        players = playerList.getPlayers(true);
         this.setState({addresses: utils.getAllEmails(players)});
       });
     }
@@ -55,7 +55,7 @@ export default class GameMail extends Component {
         {this.state.addresses ?
           <div className={styles.buttonWrap}>
             <a className={styles.mailto} href={`mailto:${mailto}?subject=${subject}&body=${body}`} />
-            <RaisedButton  label="Indkaldelse" />
+            <RaisedButton label="Indkaldelse" />
           </div>
           : null}
       </div>

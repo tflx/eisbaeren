@@ -15,6 +15,8 @@ function PostList({...props}) {
             key={index}
             author={post.fields.author}
             title={post.fields.title}
+            date={post.sys.createdAt}
+            id={post.sys.id}
           />
         )
         :

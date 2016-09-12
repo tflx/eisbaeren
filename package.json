@@ -23,6 +23,7 @@
     "fetch-jsonp": "^1.0.1",
     "gsap": "^1.19.0",
     "lost": "^6.8.1",
+    "marked": "^0.3.6",
     "material-ui": "^0.15.4",
     "moment": "^2.14.1",
     "normalize.css": "4.1.1",

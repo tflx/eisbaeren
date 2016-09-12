@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardText} from 'material-ui/Card';
 // import FlatButton from 'material-ui/FlatButton';
 import Loader from 'components/Loader';
 import H1 from 'components/H1';
