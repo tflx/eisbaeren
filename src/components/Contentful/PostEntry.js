@@ -5,6 +5,7 @@ import DateString from 'components/DateString';
 import IconButton from 'components/IconButton';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import arrow from '../../images/arrow-right.svg';
+import styles from './PostEntry.css';
 
 function PostEntry({...props}) {
   const {title, date, id} = props;
@@ -17,7 +18,7 @@ function PostEntry({...props}) {
   return (
     <Card>
       <CardHeader title={title} subtitle={<DateString date={date} parenthesis={false} />} />
-      <CardActions>
+      <CardActions className={styles.actions}>
         <IconButton onClick={showPost} icon={<SvgIcon width="24px" svg={arrow} />} />
       </CardActions>
     </Card>
