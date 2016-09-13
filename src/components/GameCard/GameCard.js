@@ -78,7 +78,15 @@ export default class GameCard extends Component {
           {attending ?
             <div>
               <div className={styles.gameInfo}>
-                <span>Dato: </span><DateString className={styles.highlight} size="14px" time={false} date={this.props.starttime} parenthesis={false} /><span className={styles.highlight}> kl. {kickoff}</span>
+                <span>Dato: </span>
+                <DateString
+                  className={styles.highlight}
+                  size="14px"
+                  time={false}
+                  date={this.props.starttime}
+                  parenthesis={false}
+                />
+                <span className={styles.highlight}> kl. {kickoff}</span>
                 <div>Række: <span className={styles.highlight}>{config.dai.league}</span>, Pulje: <span className={styles.highlight}>{config.dai.division}</span></div>
                 <div>Kamp nr. <span className={styles.highlight}>{this.parseGameNo()}</span></div>
               </div>

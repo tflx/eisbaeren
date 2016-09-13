@@ -103,7 +103,14 @@ export default class ActivityDetails extends Component {
 
               <Card className={styles.card} >
                 <CardText>
-                  <Status reloadActivity={this.getActivity} status={this.state.status} disabled={this.state.fetching} actionMethod={activity.action_method} actionPath={activity.action_path} className={styles.status} />
+                  <Status
+                    reloadActivity={this.getActivity}
+                    status={this.state.status}
+                    disabled={this.state.fetching}
+                    actionMethod={activity.action_method}
+                    actionPath={activity.action_path}
+                    className={styles.status}
+                  />
                 </CardText>
                 <Divider />
                 <CardHeader title="Tilmeldingsstatus" actAsExpander showExpandableButton />

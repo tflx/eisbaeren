@@ -28,7 +28,16 @@ export default class PasswordField extends Component {
 
     return (
       <span className={styles.wrapper}>
-        <TextField onKeyDown={this.props.onKeyDown} ref="password" type={this.state.hidden ? 'password' : 'text'} fullWidth ref="password" floatingLabelText="Adgangskode" id="password" name="password" />
+        <TextField
+          onKeyDown={this.props.onKeyDown}
+          ref="password"
+          type={this.state.hidden ? 'password' : 'text'}
+          fullWidth
+          ref="password"
+          floatingLabelText="Adgangskode"
+          id="password"
+          name="password"
+        />
         <IconButton style={iconStyle} onClick={this.handleSwitch}>
           {this.state.hidden ?
             <SvgIcon svg={eye} />

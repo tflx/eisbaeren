@@ -73,8 +73,6 @@ export default class Rsvps extends Component {
       noRsvp.push(norsvpUser);
     }
 
-    console.log(attends);
-    console.log(noAttend);
 
     // attends.sort((a, b) => new Date(a.updated_at).getTime() > new Date(b.updated_at).getTime());
     // noAttend.sort((a, b) => new Date(a.updated_at).getTime() > new Date(b.updated_at).getTime());

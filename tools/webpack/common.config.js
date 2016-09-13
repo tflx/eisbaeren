@@ -62,7 +62,7 @@ webpackConfig.postcss = (webpack) => {
       }
     }),
     require('postcss-calc'),
-    require('lost'),
+    // require('lost'),
     require('postcss-focus'),
     require('postcss-responsive-type'),
     require('precss'),

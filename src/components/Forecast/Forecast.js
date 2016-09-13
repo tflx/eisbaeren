@@ -1,4 +1,6 @@
 /* global google */
+
+/*
 import React, {Component, PropTypes} from 'react';
 import scriptLoader from 'utils/script-loader';
 import config from '../../../mock-api/config.json';
@@ -73,4 +75,4 @@ export default class Forecast extends Component {
       </div>
     );
   }
-}
+}*/

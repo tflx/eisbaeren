@@ -2,7 +2,7 @@
   "name": "Eisbären",
   "short_name": "Eisbären",
   "start_url": "/",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#f80015",
   "icons": [
     {
