@@ -29,8 +29,7 @@ export default class Status extends Component {
     const {actionMethod, actionPath} = this.props;
     holdsport.push(actionPath, data, actionMethod)
       .then((response) => {
-        console.log(response);
-        this.props.reloadActivity();
+        this.props.reloadActivity(response.status_code);
       });
   }
 

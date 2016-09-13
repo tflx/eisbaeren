@@ -36,12 +36,11 @@ export default class Comment extends Component {
     const path = `/v1/activities/${this.props.activity.id}/comments`;
     const data = {comment: {body: this.state.newComment}};
     holdsport.push(path, data, 'PUSH')
-      .then((response => {
-        console.log(response);
+      .then(() => {
         this.setState({newComment: ''});
         this.props.reloadActivity();
       }
-    ));
+    );
   }
 
 

@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import {push} from 'utils/holdsport';
 import {browserHistory} from 'react-router';
 import {Card, CardText} from 'material-ui/Card';
 import IconButton from 'components/IconButton';
@@ -31,20 +30,8 @@ export default class SingleActivity extends Component {
     this.setState({status});
   }
 
-  changeStatus = (newStatus) => {
-    this.setState({fetching: true});
-    const data = {
-      activities_user: {
-        joined_status: newStatus,
-        picked: 1
-      }
-    };
-
-    const {action_method, action_path} = this.state.activity;
-    push(action_path, data, action_method)
-      .then((response) =>
-        this.setState({status: response.status_code, fetching: false})
-      );
+  onStatusChanged = (status) => {
+    this.setState({status});
   }
 
   showDetails = () => {
@@ -118,7 +105,14 @@ export default class SingleActivity extends Component {
               <span className={styles.fetchingSpace}>
                 {this.state.fetching ? <Loader size={0.3} style={loaderStyle} /> : null}
               </span>
-              <Status status={this.state.status} disabled={disabled || this.state.fetching} className={styles.status} onClick={this.changeStatus} />
+              <Status
+                reloadActivity={this.onStatusChanged}
+                status={this.state.status}
+                disabled={disabled || this.state.fetching}
+                className={styles.status}
+                actionMethod={activity.action_method}
+                actionPath={activity.action_path}
+              />
               <span className={styles.details}>
                 <IconButton onClick={this.showDetails} icon={<SvgIcon width="24px" svg={arrow} />} />
               </span>

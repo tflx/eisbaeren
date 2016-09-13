@@ -12,7 +12,10 @@ export function encodeLogin(username, password) {
 }
 
 export function saveLogin(username, password) {
-  cookie.save('holdsport_login', encodeLogin(username, password));
+  const today = new Date();
+  const expires = new Date(today.setMonth(today.getMonth() + 3));
+  const options = {expires};
+  cookie.save('holdsport_login', encodeLogin(username, password), options);
 }
 
 export function getUser() {

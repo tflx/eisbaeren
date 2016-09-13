@@ -34,7 +34,9 @@ export default class ActivityList extends Component {
         {activities ?
           <ul className={styles.list}>
             {activities ? activities.map((activity, index) => (
-              <li className={styles.singleActivity} key={index}><SingleActivity activity={activity} /></li>
+              <li className={styles.singleActivity} key={index}>
+                <SingleActivity activity={activity} />
+              </li>
             )) : null}
           </ul>
           :
