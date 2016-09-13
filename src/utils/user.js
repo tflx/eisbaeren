@@ -6,7 +6,7 @@ export function getLogin() {
 }
 
 export function encodeLogin(username, password) {
-  const login = `${username}:${password}`;
+  const login = unescape(encodeURIComponent(`${username}:${password}`));
   const encoded = `Basic ${base64.encode(login)}`;
   return encoded;
 }

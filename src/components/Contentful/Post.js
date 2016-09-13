@@ -13,7 +13,7 @@ function Post({...props}) {
       <H1>{title}</H1>
       <Card>
         <CardText className={styles.markdown}>
-          <p dangerouslySetInnerHTML={markdown}></p>
+          <div className={styles.table} dangerouslySetInnerHTML={markdown}></div>
         </CardText>
       </Card>
     </div>

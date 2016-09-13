@@ -18,7 +18,6 @@ export default class Login extends Component {
   };
 
   onKeyDown = (event) => {
-    console.log(event.keyCode);
     if (event.keyCode === 13) {
       this.handleSubmit();
     }

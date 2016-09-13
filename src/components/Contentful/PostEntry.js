@@ -16,7 +16,7 @@ function PostEntry({...props}) {
   }
 
   return (
-    <Card>
+    <Card className={styles.entry}>
       <CardHeader title={title} subtitle={<DateString date={date} parenthesis={false} />} />
       <CardActions className={styles.actions}>
         <IconButton onClick={showPost} icon={<SvgIcon width="24px" svg={arrow} />} />

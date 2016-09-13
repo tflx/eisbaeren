@@ -8,11 +8,12 @@ import Score from './views/Score';
 import InfoView from './views/InfoView';
 import ActivityDetailsView from './views/ActivityDetailsView';
 import PostView from './views/PostView';
-import {getUser} from 'utils/user';
+import {getLogin} from 'utils/user';
 
-function requireAuth(nextState, replaceState) {
-  if (!getUser()) {
-    replaceState({ nextPathname: nextState.location.pathname }, '/');
+function requireAuth(nextState, replace) {
+  if (!getLogin()) {
+    // replaceState({ nextPathname: nextState.location.pathname }, '/');
+    replace('/');
   }
 }
 

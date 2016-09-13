@@ -1,3 +1,9 @@
+@import 'global/variables.css';
+
+.entry {
+  margin-bottom: var(--gutter);
+}
+
 .actions {
   text-align: right;
 }

@@ -107,8 +107,6 @@ export default class SingleActivity extends Component {
                         <span>{date.kickoff}</span>
                       </span>
                     </p>
-                    <p>
-                    </p>
                   </div>
                   : null
                 }

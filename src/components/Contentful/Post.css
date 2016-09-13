@@ -1,5 +1,21 @@
+@import 'global/variables';
+
 .markdown {
   ul {
     padding-left: 20px;
   }
+
+  table th {
+    background-color: var(--lightgrey);
+    padding: 5px;
+  }
+
+  table td {
+    padding: 3px 5px;
+    white-space: nowrap;
+  }
+}
+
+.markdown .table {
+  overflow: scroll;
 }

@@ -17,6 +17,7 @@ import Divider from 'material-ui/Divider';
 // import StaticMap from 'components/StaticMap/StaticMap';
 import DateString from 'components/DateString';
 import logo from 'static/logo.svg';
+import arrow from 'images/arrow-right.svg';
 
 export default class ActivityDetails extends Component {
   static propTypes = {
@@ -83,6 +84,11 @@ export default class ActivityDetails extends Component {
                   <div className={styles.info}>
                     <SvgIcon svg={calendar} />
                     <span><DateString size="14px" time={showTime} kickoff date={activity.starttime} parenthesis={false} /></span>
+                  </div>
+
+                  <div className={styles.info}>
+                    <SvgIcon svg={arrow} />
+                    <span><a target="_blank" href={`http://www.holdsport.dk/activities/${this.props.eventId}`}>Aktivitet på Holdsport.dk</a></span>
                   </div>
 
                 </CardText>
