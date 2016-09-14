@@ -1,0 +1,3 @@
+export const SAVE_PLAYERS = 'SAVE_PLAYERS';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
