@@ -35,7 +35,7 @@ export default class Comment extends Component {
   saveComment = () => {
     const path = `/v1/activities/${this.props.activity.id}/comments`;
     const data = {comment: {body: this.state.newComment}};
-    holdsport.push(path, data, 'PUSH')
+    holdsport.push(path, data, 'POST')
       .then(() => {
         this.setState({newComment: ''});
         this.props.reloadActivity();
