@@ -1,6 +1,7 @@
 
 import config from '../../mock-api/config.json';
 import {getLogin, encodeLogin} from './user';
+import 'whatwg-fetch';
 
 
 function getOptions() {
@@ -8,7 +9,11 @@ function getOptions() {
     method: 'GET',
     hostname: `${config.holdsport.api}`,
     port: 80,
-    headers: { Authorization: getLogin() }
+    headers: { Authorization: getLogin() },
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    // mode: 'no-cors',
+    credentials: 'include'
   };
 
   return options;
@@ -16,14 +21,24 @@ function getOptions() {
 
 function validateHoldsportLogin(username, password) {
   const options = getOptions();
+  options.credentials = 'include';
   options.headers = { Authorization: encodeLogin(username, password) };
   const subPath = 'user';
 
   return fetch(options.hostname + subPath, options)
-  .then((response) => handleResponse(response)
-    .then((res) => res)
-    .catch((error) => Promise.reject(error))
-  );
+  .then((response) => {
+    console.log(response);
+    // response.json().then(json => console.log(json));
+    handleResponse(response)
+    . then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    });
+  });
 }
 
 function get(path) {
@@ -52,13 +67,11 @@ function push(path, data, method) {
 
 
 function handleResponse(response) {
-  if (response.status >= 200 && response.status < 300) {
+  console.log(response);
+  // if (response.status >= 200 && response.status < 300) {
+  if (response.status === 0) {
     return response.json().then((json) => {
-      if (json.error) {
-        const error = new Error(response.error);
-        error.response = json;
-        throw error;
-      }
+      console.log(json);
       return json;
     });
   }

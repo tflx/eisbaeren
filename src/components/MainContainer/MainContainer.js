@@ -19,6 +19,7 @@ export default class MainContainer extends Component {
 
   componentWillMount() {
     let isLoggedIn = false;
+    console.log(getLogin());
     if (getLogin() !== undefined) isLoggedIn = true;
     this.setState({isLoggedIn});
   }

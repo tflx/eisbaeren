@@ -32,6 +32,7 @@ export default class Login extends Component {
 
     holdsport.validateHoldsportLogin(username, password)
     .then((response) => {
+      console.log(response);
       saveUser(response);
       saveLogin(username, password);
       this.props.onLoginSuccess();

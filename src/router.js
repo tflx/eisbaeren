@@ -11,6 +11,7 @@ import PostView from './views/PostView';
 import {getLogin} from 'utils/user';
 
 function requireAuth(nextState, replace) {
+  console.log(getLogin());
   if (!getLogin()) {
     // replaceState({ nextPathname: nextState.location.pathname }, '/');
     replace('/');
